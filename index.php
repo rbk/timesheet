@@ -18,6 +18,122 @@
 </head>
 <body>
 <div class="container">
+    <style>
+    .container {
+        padding: 1em;
+    }
+        .timesheet {
+            width: 90%;
+            margin: 0 auto;
+        }
+        table {
+            border: 1px solid #000;
+            /*table-layout: fixed;*/
+            /*width: 100%;*/
+        }
+        td,th {
+            text-align: center;
+            border: 1px solid #000;
+            width: 20px;
+            height: 20px;
+
+        }
+        tr:hover {
+            background-color: #eee;
+        }
+        td:hover {
+            cursor: default;
+        }
+        .leftside {
+            width: 200px;
+            padding: 0 3px;
+            margin: 0;
+        }
+        input.company {
+            margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+width: 100%;
+height: 100%;
+        }
+    </style>
+
+
+    <div class="timesheet">
+
+        <table>
+            <tr>
+                <td></td>
+                <td colspan="22">
+                    Name:
+                </td>
+                <td colspan="22">
+                    Date:
+                </td>
+            </tr>
+            <tr>
+                <td class="leftside"></td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>9</td>
+                <td>9</td>
+                <td>9</td>
+                <td>9</td>
+                <td>10</td>
+                <td>10</td>
+                <td>10</td>
+                <td>10</td>
+                <td>11</td>
+                <td>11</td>
+                <td>11</td>
+                <td>11</td>
+                <td>12</td>
+                <td>12</td>
+                <td>12</td>
+                <td>12</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>3</td>
+                <td>3</td>
+                <td>3</td>
+                <td>3</td>
+                <td>4</td>
+                <td>4</td>
+                <td>4</td>
+                <td>4</td>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+                <td>6</td>
+                <td>6</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+                
+            <?php for( $i=0; $i<15; $i++ ) : ?>
+            <tr>
+                <td class="leftside"><input class="company" type="text"></td>
+                <?php 
+                    for($td=0;$td<44;$td++){
+                        echo '<td class="checks"></td>';
+                    } 
+
+                ?>
+            </tr>
+            <?php endfor; ?>
+     
+        </table>
+    </div>
 
 
 
