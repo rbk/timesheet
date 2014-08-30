@@ -16,54 +16,13 @@
     <![endif]-->
     <script src="//code.jquery.com/jquery-1.11.1.js"></script>
 </head>
-<body>
+<body class="dark">
 <div class="container">
-    <style>
-    .container {
-        padding: 1em;
-    }
-        .timesheet {
-            width: 90%;
-            margin: 0 auto;
-        }
-        table {
-            border: 1px solid #000;
-            /*table-layout: fixed;*/
-            /*width: 100%;*/
-        }
-        td,th {
-            text-align: center;
-            border: 1px solid #000;
-            width: 20px;
-            height: 20px;
-
-        }
-        tr:hover {
-            background-color: #eee;
-        }
-        td:hover {
-            cursor: default;
-        }
-        .leftside {
-            width: 200px;
-            padding: 0 3px;
-            margin: 0;
-        }
-        input.company {
-            margin: 0;
-padding: 0;
-border: 0;
-outline: 0;
-width: 100%;
-height: 100%;
-        }
-    </style>
-
 
     <div class="timesheet">
 
         <table>
-            <tr>
+<!--             <tr>
                 <td></td>
                 <td colspan="22">
                     Name:
@@ -71,7 +30,7 @@ height: 100%;
                 <td colspan="22">
                     Date:
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td class="leftside"></td>
                 <td>8</td>
