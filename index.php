@@ -93,9 +93,9 @@
                 <td>6</td>
             </tr>
                 
-            <?php for( $i=0; $i<5; $i++ ) : ?>
+            <?php for( $i=0; $i<20; $i++ ) : ?>
             <tr>
-                <td class="leftside"><input class="company" type="text" placeholder="company, desc, etc.."></td>
+                <td class="leftside"><input class="company" type="text" placeholder=""></td>
                 <?php 
                     for($td=0;$td<44;$td++){
                         echo '<td class="checks"></td>';

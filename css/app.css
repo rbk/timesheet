@@ -4097,26 +4097,32 @@ td, th {
   border: 1px solid #666;
   width: 22px;
   height: 22px;
+  transition: background .2s ease-in-out;
 }
 
 /* line 61, ../sass/app.scss */
+tr {
+  transition: background .2s ease-in-out;
+}
+
+/* line 64, ../sass/app.scss */
 tr:hover {
   background-color: #eee;
 }
 
-/* line 64, ../sass/app.scss */
+/* line 67, ../sass/app.scss */
 td:hover {
   cursor: default;
 }
 
-/* line 67, ../sass/app.scss */
+/* line 70, ../sass/app.scss */
 .leftside {
   width: 200px;
   padding: 0 3px;
   margin: 0;
 }
 
-/* line 73, ../sass/app.scss */
+/* line 76, ../sass/app.scss */
 input {
   outline: 0;
   background-color: transparent;
@@ -4127,7 +4133,13 @@ input {
   height: 100%;
 }
 
-/* line 90, ../sass/app.scss */
+/* line 85, ../sass/app.scss */
+td.checked {
+  background-color: lime;
+  color: #fff;
+}
+
+/* line 96, ../sass/app.scss */
 body button,
 body input[type=submit] {
   width: auto;
@@ -4138,12 +4150,12 @@ body input[type=submit] {
   padding: 6px 15px;
   color: #000;
 }
-/* line 98, ../sass/app.scss */
+/* line 104, ../sass/app.scss */
 body button:hover,
 body input[type=submit]:hover {
   background-color: #eee;
 }
-/* line 101, ../sass/app.scss */
+/* line 107, ../sass/app.scss */
 body button:active,
 body input[type=submit]:active {
   background-color: #111;

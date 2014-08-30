@@ -106,7 +106,7 @@ $(function(){
                 console.log( '---Settings---' );
                 console.log( request.result );
                 $('#name').val( setting.name );
-                $('body').addClass( setting.theme );
+                // $('body').addClass( setting.theme );
             };
 
         }
