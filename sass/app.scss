@@ -1,6 +1,13 @@
 @import "normalize";
 @import "animate";
 
+$placeholder-color: #444;
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 body {
 	font-family: arial, helvetica, sans-serif;
 	font-size: 14px;
@@ -21,22 +28,24 @@ body.dark {
 	}
 }
 .container {
-padding: 1em;
-}
-.timesheet {
+    padding: 1em;
     width: 90%;
     margin: 0 auto;
 }
+.timesheet {
+    margin: 0 auto;
+    width: 100%;
+}
 table {
     border: 1px solid #fff;
-    /*table-layout: fixed;*/
-    /*width: 100%;*/
+    table-layout: fixed;
+    width: 100%;
 }
 td,th {
     text-align: center;
     border: 1px solid #666;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
 
 }
 tr:hover {
@@ -50,11 +59,42 @@ td:hover {
     padding: 0 3px;
     margin: 0;
 }
-input.company {
+
+input {
+    outline: 0;
+    background-color: transparent;
+    border: 0;
     margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	width: 100%;
-	height: 100%;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+::-webkit-input-placeholder { color: $placeholder-color; }
+:-moz-placeholder { color: $placeholder-color; }
+::-moz-placeholder { color: $placeholder-color; }
+:-ms-input-placeholder { color: $placeholder-color; }
+
+
+body {
+
+button,
+input[type=submit] {
+    width: auto;
+    border: 0;
+    margin: 0;
+    outline: 0;
+    background-color: #FFF;
+    padding: 6px 15px;
+    color: #000;
+    &:hover {
+        background-color: #eee;
+    }
+    &:active {
+        background-color: #111;
+        color: #fff;
+    }
+}
+
 }

@@ -18,19 +18,18 @@
 </head>
 <body class="dark">
 <div class="container">
+    <nav>
+        <button>Toggle Theme</button>
+        <input type="submit">
+    </nav>
+    <br><br>
+    <section id="general">
+        <h2><?php echo Date('m-d-y'); ?></h2>
+        <h2>name: <input id="name" type="text" placeholder="your name" style="width: 200px"></h2>
+    </section>
 
     <div class="timesheet">
-
         <table>
-<!--             <tr>
-                <td></td>
-                <td colspan="22">
-                    Name:
-                </td>
-                <td colspan="22">
-                    Date:
-                </td>
-            </tr> -->
             <tr>
                 <td class="leftside"></td>
                 <td>8</td>
@@ -81,7 +80,7 @@
                 
             <?php for( $i=0; $i<15; $i++ ) : ?>
             <tr>
-                <td class="leftside"><input class="company" type="text"></td>
+                <td class="leftside"><input class="company" type="text" placeholder="company, desc, etc.."></td>
                 <?php 
                     for($td=0;$td<44;$td++){
                         echo '<td class="checks"></td>';
@@ -93,11 +92,25 @@
      
         </table>
     </div>
-
-
-
-
 </div> <!-- end .container -->
+<script>
+    $(function(){
+
+    $('td.checks').on('click', function(){
+        if( $(this).hasClass('checked') ){
+            $(this).html('');
+            $(this).removeClass('checked');
+        } else {
+            $(this).html('<i class="fa fa-check"></i>')
+            $(this).addClass('checked')
+        }
+    });
+
+});
+</script>
+
+
+
 <script src="./js/app.js"></script>
 </body>
 </html>
