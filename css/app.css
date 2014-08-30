@@ -4006,59 +4006,91 @@ Copyright (c) 2014 Daniel Eden
   animation-name: zoomOutUp;
 }
 
-/* line 6, ../sass/app.scss */
+/* line 7, ../sass/app.scss */
 *, *:before, *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 11, ../sass/app.scss */
+/* line 12, ../sass/app.scss */
 body {
   font-family: arial, helvetica, sans-serif;
   font-size: 14px;
 }
-
+/* line 15, ../sass/app.scss */
+body ::-webkit-input-placeholder {
+  color: #dddddd;
+}
 /* line 16, ../sass/app.scss */
+body :-moz-placeholder {
+  color: #dddddd;
+}
+/* line 17, ../sass/app.scss */
+body ::-moz-placeholder {
+  color: #dddddd;
+}
+/* line 18, ../sass/app.scss */
+body :-ms-input-placeholder {
+  color: #dddddd;
+}
+
+/* line 21, ../sass/app.scss */
 body.dark {
   background-color: #222;
   color: #999;
 }
-/* line 19, ../sass/app.scss */
+/* line 24, ../sass/app.scss */
 body.dark table, body.dark td, body.dark th {
   border: 1px solid #666;
 }
-/* line 22, ../sass/app.scss */
+/* line 27, ../sass/app.scss */
 body.dark input {
   color: #999;
   background-color: #222;
 }
-/* line 26, ../sass/app.scss */
+/* line 31, ../sass/app.scss */
 body.dark tr:hover {
   background-color: #333;
 }
+/* line 34, ../sass/app.scss */
+body.dark ::-webkit-input-placeholder {
+  color: #444444;
+}
+/* line 35, ../sass/app.scss */
+body.dark :-moz-placeholder {
+  color: #444444;
+}
+/* line 36, ../sass/app.scss */
+body.dark ::-moz-placeholder {
+  color: #444444;
+}
+/* line 37, ../sass/app.scss */
+body.dark :-ms-input-placeholder {
+  color: #444444;
+}
 
-/* line 30, ../sass/app.scss */
+/* line 39, ../sass/app.scss */
 .container {
   padding: 1em;
   width: 90%;
   margin: 0 auto;
 }
 
-/* line 35, ../sass/app.scss */
+/* line 44, ../sass/app.scss */
 .timesheet {
   margin: 0 auto;
   width: 100%;
 }
 
-/* line 39, ../sass/app.scss */
+/* line 48, ../sass/app.scss */
 table {
   border: 1px solid #fff;
   table-layout: fixed;
   width: 100%;
 }
 
-/* line 44, ../sass/app.scss */
+/* line 53, ../sass/app.scss */
 td, th {
   text-align: center;
   border: 1px solid #666;
@@ -4066,24 +4098,24 @@ td, th {
   height: 22px;
 }
 
-/* line 51, ../sass/app.scss */
+/* line 60, ../sass/app.scss */
 tr:hover {
   background-color: #eee;
 }
 
-/* line 54, ../sass/app.scss */
+/* line 63, ../sass/app.scss */
 td:hover {
   cursor: default;
 }
 
-/* line 57, ../sass/app.scss */
+/* line 66, ../sass/app.scss */
 .leftside {
   width: 200px;
   padding: 0 3px;
   margin: 0;
 }
 
-/* line 63, ../sass/app.scss */
+/* line 72, ../sass/app.scss */
 input {
   outline: 0;
   background-color: transparent;
@@ -4094,27 +4126,7 @@ input {
   height: 100%;
 }
 
-/* line 74, ../sass/app.scss */
-::-webkit-input-placeholder {
-  color: #444444;
-}
-
-/* line 75, ../sass/app.scss */
-:-moz-placeholder {
-  color: #444444;
-}
-
-/* line 76, ../sass/app.scss */
-::-moz-placeholder {
-  color: #444444;
-}
-
-/* line 77, ../sass/app.scss */
-:-ms-input-placeholder {
-  color: #444444;
-}
-
-/* line 83, ../sass/app.scss */
+/* line 89, ../sass/app.scss */
 body button,
 body input[type=submit] {
   width: auto;
@@ -4125,12 +4137,12 @@ body input[type=submit] {
   padding: 6px 15px;
   color: #000;
 }
-/* line 91, ../sass/app.scss */
+/* line 97, ../sass/app.scss */
 body button:hover,
 body input[type=submit]:hover {
   background-color: #eee;
 }
-/* line 94, ../sass/app.scss */
+/* line 100, ../sass/app.scss */
 body button:active,
 body input[type=submit]:active {
   background-color: #111;

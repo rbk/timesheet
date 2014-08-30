@@ -18,7 +18,7 @@
 </head>
 <body class="dark">
 <div class="container">
-    <nav>
+    <nav style="display:none;">
         <button>Toggle Theme</button>
         <input type="submit">
     </nav>
@@ -78,7 +78,7 @@
                 <td>6</td>
             </tr>
                 
-            <?php for( $i=0; $i<15; $i++ ) : ?>
+            <?php for( $i=0; $i<5; $i++ ) : ?>
             <tr>
                 <td class="leftside"><input class="company" type="text" placeholder="company, desc, etc.."></td>
                 <?php 

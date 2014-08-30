@@ -1,7 +1,8 @@
 @import "normalize";
 @import "animate";
 
-$placeholder-color: #444;
+$placeholder-color-dark: #444;
+$placeholder-color: #ddd;
 
 *, *:before, *:after {
     -moz-box-sizing: border-box;
@@ -11,21 +12,29 @@ $placeholder-color: #444;
 body {
 	font-family: arial, helvetica, sans-serif;
 	font-size: 14px;
+    ::-webkit-input-placeholder { color: $placeholder-color; }
+    :-moz-placeholder { color: $placeholder-color; }
+    ::-moz-placeholder { color: $placeholder-color; }
+    :-ms-input-placeholder { color: $placeholder-color; }
 }
 
 body.dark {
     background-color: #222;
     color: #999;
     table,td,th {
-		border: 1px solid #666;
+        border: 1px solid #666;
     }
     input {
-    	color: #999;
-    	background-color: #222;
+        color: #999;
+        background-color: #222;
     }
     tr:hover {
-    	background-color: #333;
-	}
+        background-color: #333;
+    }
+    ::-webkit-input-placeholder { color: $placeholder-color-dark; }
+    :-moz-placeholder { color: $placeholder-color-dark; }
+    ::-moz-placeholder { color: $placeholder-color-dark; }
+    :-ms-input-placeholder { color: $placeholder-color-dark; }
 }
 .container {
     padding: 1em;
@@ -71,10 +80,7 @@ input {
 }
 
 
-::-webkit-input-placeholder { color: $placeholder-color; }
-:-moz-placeholder { color: $placeholder-color; }
-::-moz-placeholder { color: $placeholder-color; }
-:-ms-input-placeholder { color: $placeholder-color; }
+
 
 
 body {
