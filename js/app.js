@@ -10,15 +10,20 @@ $(function(){
 	} else {
         var idbSupported = true;
     }
+    // var random = Math.floor(Math.random()*100); console.log( 'Lucky Number: ' + random );
 
-
-    var random = Math.floor(Math.random()*100); console.log( 'Lucky Number: ' + random );
+    var date = new Date();
+    var dateFull = parseInt(date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear();
+   // console.log( 'Month: ' + parseInt(date.getMonth()+1) );
+   // console.log( 'Day: ' + date.getDate() );
+   // console.log( 'Year: ' + date.getFullYear() );
+   // console.log( dateFull );
+    
 
     var employeeTimesheets = [
         { 
-            id: 'autoincrement ID', 
             name: 'employee name', 
-            date: '08/30/2014',
+            date: dateFull,
                 work: [
                 { 
                     company: 'Company Name',
@@ -43,14 +48,15 @@ $(function(){
         var db;
         var db_name = 'timesheets';
         var transaction, store;
-        var request = indexedDB.open(db_name,7);
+        var request = indexedDB.open(db_name,8);
         
         request.onupgradeneeded = function(e) {
             console.log( 'Upgrading Database!' );
             var thisDB = e.target.result;
 
             if(!thisDB.objectStoreNames.contains("timesheets")) {
-                thisDB.createObjectStore("timesheets",{ keyPath: "name" });
+                var objectStore = thisDB.createObjectStore("timesheets",{ keyPath: "date" });
+                objectStore.createIndex('date', 'date', {unique: true});
                 // thisDb.createObjectStore("test2", { autoIncrement: true });
             }
             if(!thisDB.objectStoreNames.contains("settings")) {
@@ -67,7 +73,8 @@ $(function(){
             console.log( 'Connected to database: "' + db_name + '"');
             saveTimesheet();
             init();
-            getSettings( e.target.result );
+            getSettings( db );
+            getTimesheets( db );
         };
         function saveTimesheet(){
             var transaction = db.transaction(['timesheets'],'readwrite');
@@ -87,21 +94,36 @@ $(function(){
             }
         }
         function getSettings(db){
-            // console.log( settings );
             var transaction = db.transaction(["settings"]);
             var objectStore = transaction.objectStore("settings");
 
-            // Use get() to get a specific object from the object store, the key of which is "Walk dog"
-            var request = objectStore.get("Guest123");
+            var request = objectStore.get("guest123@gurustu.co");
             request.onerror = function(event) {
-            console.log("There is no record stored for " + request.result.taskTitle);
+                console.log("There is no record stored for " + request.result);
             };
             request.onsuccess = function(event) {
-            // Do something with the request.result!
-                console.log( request.result )
+                var setting = request.result;
+                console.log( '---Settings---' );
+                console.log( request.result );
+                $('#name').val( setting.name );
+                $('body').addClass( setting.theme );
             };
 
-        }   
+        }
+        function getTimesheets(db){
+            var transaction = db.transaction(["timesheets"]);
+            var objectStore = transaction.objectStore("timesheets");
+
+            var request = objectStore.get("8-30-2014");
+            request.onerror = function(event) {
+                console.log("There is no record stored for " + request.result);
+            };
+            request.onsuccess = function(event) {
+                var timesheets = request.result;
+                console.log( '---Timesheets---' );
+                console.log( timesheets );
+            };
+        }
     
     };
 
