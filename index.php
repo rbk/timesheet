@@ -19,9 +19,28 @@
         <input type="submit">
     </nav>
     <br><br>
+    <style>
+
+        #general h2 {
+            border: 1px solid #616161;
+            margin: 0;
+            padding: 8px 10px;
+            border-bottom: 0;
+        }
+
+    </style>
     <section id="general">
-        <h2><?php echo Date('m-d-y'); ?></h2>
-        <h2>name: <input id="name" type="text" placeholder="your name" style="width: 200px"></h2>
+        <h2>
+            <?php echo Date('l - F dS, Y' ); ?>
+            <span class="tracked">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Tracked: 7.5</span>
+            <span style="float:right;">
+                Name:&nbsp;<input id="name" type="text" placeholder="your name" style="width: 200px">
+            </span>
+        </h2>
     </section>
 
     <div class="timesheet">
@@ -87,7 +106,8 @@
             <?php endfor; ?>
      
         </table>
-    </div>
+    </div> <!-- end timesheet -->
+    <h2>Money Made Today: $45,439.03</h2>
 </div> <!-- end .container -->
 <script>
     $(function(){

@@ -35,18 +35,34 @@ $(function(){
 
         var db;
         var db_name = 'timesheets';
+        var transaction, store;
         
-        var request = indexedDB.open(db_name,1);
-        request.onupgradeneeded = function(event) {
+        var request = indexedDB.open(db_name,4);
+        request.onupgradeneeded = function(e) {
             console.log( 'Upgrading Database!' );
+            var thisDB = e.target.result;
+
+            if(!thisDB.objectStoreNames.contains("timesheets")) {
+                thisDB.createObjectStore("timesheets",{ key: "name" });
+                // thisDb.createObjectStore("test2", { autoIncrement: true });
+            }
         };
-        request.onerror = function(event) {
+        request.onerror = function(e) {
             console.log( 'Something went wrong whilest connection to db...' );
         };
-        request.onsuccess = function(event) {
+        request.onsuccess = function(e) {
+            db = e.target.result;
             console.log( 'Connected to database: "' + db_name + '"');
-            console.log( event.target.result );
+            saveTimesheet()
         };
+        function saveTimesheet(){
+            var transaction = db.transaction(['timesheets'],'readwrite');
+            var store = transaction.objectStore('timesheets');
+            var request = store.add(employeeTimesheets,1);
+            request.onsuccess = function(e){
+                console.log('Saved');
+            }
+        }
     
     };
 
