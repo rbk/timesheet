@@ -67,7 +67,7 @@ $(function(){
             totalHours: 0,
             work: [
                     { 
-                        id: '1',
+                        id: 0,
                         company: '',
                         description: '',
                         totalHours: 0, // sumb of true on day multiplied by 15
@@ -137,9 +137,9 @@ $(function(){
                 for(var d=0;d<day.length;d++){
                     // console.log( day[d] )
                     if( day[d] == 1 ){
-                        rows += '<td data-index="id-'+ employeeTimesheets[sheets].date+'" data-col="'+d+'" class="checks checked"><i class="fa fa-check"></i></td>';
+                        rows += '<td data-index="'+ employeeTimesheets[sheets].date+'" data-col="'+d+'" class="checks checked"><i class="fa fa-check"></i></td>';
                     } else {                    
-                        rows += '<td data-index="id-'+ employeeTimesheets[sheets].date + '"data-col="'+d+'" class="checks"></td>';
+                        rows += '<td data-index="'+ employeeTimesheets[sheets].date + '"data-col="'+d+'" class="checks"></td>';
                     }
                 }
                 timesheet_body = timesheet_body.replace('{{times}}', rows)
@@ -204,7 +204,7 @@ $(function(){
             });
         };
 
-        function saveTimesheet( timesheet ){
+        function saveNewTimesheet( timesheet ){
             var transaction = db.transaction(['timesheets'],'readwrite');
             var store = transaction.objectStore('timesheets');
             var request = store.add(timesheet);
@@ -212,6 +212,18 @@ $(function(){
                 console.log('Saved');
             }
         }
+        // function updateTimesheet( timesheet_id ){
+        //     var timesheet = {};
+        //     var transaction = db.transaction(['timesheets'],'readwrite');
+        //     var store = transaction.objectStore('timesheets');
+        //     var request = store.get( timesheet_id );
+        //     request.onsuccess = function(e){
+        //         console.log( e.target.result )
+        //         timesheet = e.target.result;
+        //     }
+        //     return timesheet;
+        //     // return e.target.result;
+        // }
         function init(){
             var transaction = db.transaction(['settings'],'readwrite');
             var store = transaction.objectStore('settings');
@@ -258,7 +270,7 @@ $(function(){
             request.onsuccess = function(event){
                 var todaysSheet = request.result;
                 if( !todaysSheet ){
-                    saveTimesheet( todaysTimesheet );
+                    saveNewTimesheet( todaysTimesheet );
                     location.reload();
                 }
             };
@@ -306,11 +318,29 @@ $(function(){
     $(document).on('click', 'td.checks', function(){
         console.log( $(this).attr('data-index') );
         console.log( $(this).parent().find('td.checks').length );
+
         var td = $(this).parent().find('td.checks');
+        var timesheet_id = $(this).attr('data-index');
         var tds = [];
+
+        // var timesheet = updateTimesheet( timesheet_id );
+        var transaction = db.transaction(['timesheets'],'readwrite');
+        var store = transaction.objectStore('timesheets');
+        var request = store.get( timesheet_id );
+        request.onsuccess = function(e){
+            timesheet = e.target.result;
+            timesheet.name = $('#name').val();
+            console.log( timesheet );
+            store.put( timesheet );
+        };
+
+
+
+        // saveNewTimesheet( timesheet );
+        // console.log( timesheet )
         for( var i=0; i<td.length; i++ ){
             // if( th[i] )
-            console.log( td )
+            // console.log( td )
         }
     })
 
