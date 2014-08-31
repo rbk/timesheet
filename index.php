@@ -27,7 +27,7 @@
         <button class="add-row">Add Row</button>
         <section id="general">
             <h2>
-                <span class="date">{{date}}
+                <span class="date">{{day}}, {{date}}
                 <?php //echo Date('l - F dS, Y' ); ?></span>
                 <span class="tracked">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

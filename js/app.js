@@ -119,6 +119,7 @@ $(function(){
             var id = employeeTimesheets[sheets].date;
             var template = $('#timesheet-template').html();
             var timesheet_body = '';
+            template = template.replace('{{day}}',employeeTimesheets[sheets].day);
             template = template.replace('{{date}}',employeeTimesheets[sheets].date);
             template = template.replace('{{date2}}',employeeTimesheets[sheets].date);
             template = template.replace('{{totalHours}}',employeeTimesheets[sheets].totalHours);
@@ -136,9 +137,9 @@ $(function(){
                 for(var d=0;d<day.length;d++){
                     // console.log( day[d] )
                     if( day[d] == 1 ){
-                        rows += '<td data-col="'+d+'" class="checks checked"><i class="fa fa-check"></i></td>';
+                        rows += '<td data-index="id-'+ employeeTimesheets[sheets].date+'" data-col="'+d+'" class="checks checked"><i class="fa fa-check"></i></td>';
                     } else {                    
-                        rows += '<td data-col="'+d+'" class="checks"></td>';
+                        rows += '<td data-index="id-'+ employeeTimesheets[sheets].date + '"data-col="'+d+'" class="checks"></td>';
                     }
                 }
                 timesheet_body = timesheet_body.replace('{{times}}', rows)
@@ -267,17 +268,13 @@ $(function(){
             var trans = db.transaction(storeName, 'readwrite');
             var store = trans.objectStore(storeName);
             var items = [];
-
             trans.oncomplete = function(evt) {  
                 callback(items);
             };
-
             var cursorRequest = store.openCursor();
-
             cursorRequest.onerror = function(error) {
                 console.log(error);
             };
-
             cursorRequest.onsuccess = function(evt) {                    
                 var cursor = evt.target.result;
                 if (cursor) {
@@ -304,6 +301,18 @@ $(function(){
     // get parent id infoformation
     // turn data td's into array mimicing default
     // save
+
+
+    $(document).on('click', 'td.checks', function(){
+        console.log( $(this).attr('data-index') );
+        console.log( $(this).parent().find('td.checks').length );
+        var td = $(this).parent().find('td.checks');
+        var tds = [];
+        for( var i=0; i<td.length; i++ ){
+            // if( th[i] )
+            console.log( td )
+        }
+    })
 
 
 });
