@@ -4071,27 +4071,35 @@ body.dark :-ms-input-placeholder {
 }
 
 /* line 39, ../sass/app.scss */
+#general h2 {
+  border: 1px solid #616161;
+  margin: 0;
+  padding: 8px 10px;
+  border-bottom: 0;
+}
+
+/* line 45, ../sass/app.scss */
 .container {
   padding: 1em;
   width: 90%;
   margin: 0 auto;
 }
 
-/* line 44, ../sass/app.scss */
+/* line 50, ../sass/app.scss */
 .timesheet {
   position: relative;
   margin: 0 auto;
   width: 100%;
 }
 
-/* line 49, ../sass/app.scss */
+/* line 55, ../sass/app.scss */
 table {
   border: 1px solid #fff;
   table-layout: fixed;
   width: 100%;
 }
 
-/* line 54, ../sass/app.scss */
+/* line 60, ../sass/app.scss */
 td, th {
   text-align: center;
   border: 1px solid #666;
@@ -4101,19 +4109,19 @@ td, th {
   font-weight: normal;
 }
 
-/* line 65, ../sass/app.scss */
+/* line 71, ../sass/app.scss */
 td:hover {
   cursor: default;
 }
 
-/* line 68, ../sass/app.scss */
+/* line 74, ../sass/app.scss */
 .leftside {
   width: 200px;
   padding: 0 3px;
   margin: 0;
 }
 
-/* line 74, ../sass/app.scss */
+/* line 80, ../sass/app.scss */
 input {
   outline: 0;
   background-color: transparent;
@@ -4124,28 +4132,29 @@ input {
   height: 100%;
 }
 
-/* line 83, ../sass/app.scss */
+/* line 89, ../sass/app.scss */
 td.checked {
   background-color: lime !important;
   background-color: #207F92 !important;
+  background-color: #209236 !important;
   color: #fff;
 }
-/* line 87, ../sass/app.scss */
+/* line 94, ../sass/app.scss */
 td.checked:active {
   box-shadow: inset 1px 1px 2px #000;
 }
 
-/* line 92, ../sass/app.scss */
+/* line 99, ../sass/app.scss */
 td:hover:not(.checked) {
   box-shadow: inset 1px 1px 2px #000;
 }
 
-/* line 103, ../sass/app.scss */
+/* line 110, ../sass/app.scss */
 .fa-check {
   text-shadow: 1px 1px 0px #000;
 }
 
-/* line 112, ../sass/app.scss */
+/* line 119, ../sass/app.scss */
 body button,
 body input[type=submit] {
   width: auto;
@@ -4156,22 +4165,22 @@ body input[type=submit] {
   padding: 6px 15px;
   color: #000;
 }
-/* line 120, ../sass/app.scss */
+/* line 127, ../sass/app.scss */
 body button:hover,
 body input[type=submit]:hover {
   background-color: #eee;
 }
-/* line 123, ../sass/app.scss */
+/* line 130, ../sass/app.scss */
 body button:active,
 body input[type=submit]:active {
   background-color: #ddd;
 }
 
-/* line 130, ../sass/app.scss */
+/* line 137, ../sass/app.scss */
 .add-row {
   position: absolute;
   left: -45px;
-  height: 42px;
+  height: 43px;
   width: 45px;
   background-color: #3D3D3D;
   color: #fff;
@@ -4180,7 +4189,7 @@ body input[type=submit]:active {
   font-size: 12px;
   line-height: 1;
 }
-/* line 141, ../sass/app.scss */
+/* line 148, ../sass/app.scss */
 .add-row:hover {
   background-color: #4d4d4d;
 }

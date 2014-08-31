@@ -20,18 +20,7 @@
         <input type="submit">
     </nav>
     <br><br>
-    <style>
-
-        #general h2 {
-            border: 1px solid #616161;
-            margin: 0;
-            padding: 8px 10px;
-            border-bottom: 0;
-        }
-
-    </style>
-
-
+ 
     <script id="timesheet-template" type="text/template">
     <div id="id-{{date2}}" class="timesheet">
         <button class="add-row">Add Row</button>
@@ -43,7 +32,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Tracked: {{totalHours}}</span>
+                    Tracked Time: {{totalHours}}</span>
                 <span style="float:right;">
                     Name:&nbsp;<input id="name" type="text" placeholder="your name" style="width: 200px" value="{{name}}">
                 </span>

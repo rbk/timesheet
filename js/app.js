@@ -6,17 +6,46 @@ $(function(){
 	window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
 	window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 	if (!window.indexedDB) {
-	    window.alert("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
-	} else {
+	    var getChrome = window.confirm("Your browser doesn't support a stable version of IndexedDB. Click ok to get Google Chrome!");
+        if( getChrome ){
+            window.location.href = 'https://www.google.com/intl/en/chrome/browser/';
+        }
+    } else {
         var idbSupported = true;
     }
+
     var random = Math.floor(Math.random()*100); console.log( 'Lucky Number: ' + random );
-
     var date = new Date();
-
+    var day;
     var timestamp = date.getTime();
-
     var dateFull = parseInt(date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear();
+    
+    switch(date.getDay()){
+        case 0:
+            day = "Sunday";
+            break;
+        case 1:
+            day = "Monday";
+            break;
+        case 2:
+            day = "Tuesday";
+            break;
+        case 3:
+            day = "Wednesday";
+            break;
+        case 4:
+            day = "Thursday";
+            break;
+        case 5:
+            day = "Friday";
+            break;
+        case 6:
+            day = "Saturday";
+            break;
+    };
+
+
+
    // console.log( 'Month: ' + parseInt(date.getMonth()+1) );
    // console.log( 'Day: ' + date.getDate() );
    // console.log( 'Year: ' + date.getFullYear() );
@@ -25,7 +54,7 @@ $(function(){
 
     var employeeTimesheets = [
         { 
-            name: 'employee name', 
+            name: '', 
             date: dateFull,
             totalHours: 0,
             work: [
@@ -33,7 +62,7 @@ $(function(){
                         id: '1',
                         company: '',
                         description: '',
-                        totalHours: 10, // sumb of true on day multiplied by 15
+                        totalHours: 0, // sumb of true on day multiplied by 15
                         day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     }
                 ] 
@@ -184,7 +213,6 @@ $(function(){
                 var setting = request.result;
                 console.log( '---Settings---' );
                 console.log( request.result );
-                // $('#name').val( setting.name );
                 $('body').addClass( setting.theme );
             };
 

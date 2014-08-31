@@ -36,6 +36,12 @@ body.dark {
     ::-moz-placeholder { color: $placeholder-color-dark; }
     :-ms-input-placeholder { color: $placeholder-color-dark; }
 }
+#general h2 {
+    border: 1px solid #616161;
+    margin: 0;
+    padding: 8px 10px;
+    border-bottom: 0;
+}
 .container {
     padding: 1em;
     width: 90%;
@@ -83,6 +89,7 @@ input {
 td.checked {
     background-color: lime !important;
     background-color: #207F92 !important;
+    background-color: rgb(32, 146, 54)!important;
     color: #fff;
     &:active {
         box-shadow: inset 1px 1px 2px #000;
@@ -130,7 +137,7 @@ input[type=submit] {
 .add-row {
     position: absolute;
 left: -45px;
-height: 42px;
+height: 43px;
 width: 45px;
 background-color: #3D3D3D;
 color: #fff;
