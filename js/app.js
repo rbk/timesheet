@@ -99,7 +99,7 @@ $(function(){
     ];
 
     // Bam... reusability
-    // function printTimeSheets( employeeTimesheets ){
+    function printTimeSheets( employeeTimesheets ){
         for( var sheets=0;sheets<employeeTimesheets.length;sheets++ ){
             var id = employeeTimesheets[sheets].date;
             var template = $('#timesheet-template').html();
@@ -131,7 +131,7 @@ $(function(){
             template = template.replace('{{timesheet-body}}', timesheet_body);
             $('#output').append(template)
         }   
-    // }
+    }
 
 
 
@@ -170,7 +170,7 @@ $(function(){
             db = e.target.result;
             console.log( 'Connected to database: "' + db_name + '"');
 
-            // printTimeSheets( employeeTimesheets );
+            printTimeSheets( employeeTimesheets );
             saveTimesheet();
             // init();
             // getSettings( db );

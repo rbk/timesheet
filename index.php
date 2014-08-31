@@ -169,7 +169,7 @@
 <script>
     $(function(){
 
-        $('.timesheet').on('click', 'td.checks', function(){
+        $(document).on('click', 'td.checks', function(){
             if( $(this).hasClass('checked') ){
                 $(this).html('');
                 $(this).removeClass('checked');
@@ -184,7 +184,7 @@
         });
 
         // Too distracting
-        $('.timesheet').on('mouseover', 'td.checks', function(){
+        $(document).on('mouseover', 'td.checks', function(){
             // console.log( $(this) )
             var column = $(this).attr('data-col');
             $('td[data-col='+column+']').css({'background-color':'#333'});
