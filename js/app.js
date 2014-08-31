@@ -35,31 +35,40 @@ $(function(){
                         description: '',
                         totalHours: 10, // sumb of true on day multiplied by 15
                         day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    },
-                    { 
-                        id: '2',
-                        company: '',
-                        totalHours: 100, // sumb of true on day multiplied by 15
-                        day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     }
                 ] 
         },
         { 
-            name: 'employee name', 
-            date: dateFull,
-            totalHours: 0,
+            name: 'Richard', 
+            date: "8-29-2014",
+            totalHours: 8,
             work: [
                     { 
                         id: '1',
-                        company: '',
+                        company: 'Email/Server Issue',
                         description: '',
                         totalHours: 10, // sumb of true on day multiplied by 15
-                        day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        day : [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     },
                     { 
                         id: '2',
-                        company: '',
-                        totalHours: 100, // sumb of true on day multiplied by 15
+                        company: 'Drysdales',
+                        description: '',
+                        totalHours: 10, // sumb of true on day multiplied by 15
+                        day : [0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    },
+                    { 
+                        id: '3',
+                        company: 'Gurustu',
+                        description: '',
+                        totalHours: 10, // sumb of true on day multiplied by 15
+                        day : [0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    },
+                    { 
+                        id: '4',
+                        company: 'CampGrit',
+                        description: '',
+                        totalHours: 10, // sumb of true on day multiplied by 15
                         day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     }
                 ] 
@@ -93,9 +102,9 @@ $(function(){
             for(var d=0;d<day.length;d++){
                 // console.log( day[d] )
                 if( day[d] == 1 ){
-                    rows += '<td class="checks checked"><i class="fa fa-check"></i></td>';
+                    rows += '<td data-col="'+d+'" class="checks checked"><i class="fa fa-check"></i></td>';
                 } else {                    
-                    rows += '<td class="checks"></td>';
+                    rows += '<td data-col="'+d+'" class="checks"></td>';
                 }
             }
             timesheet_body = timesheet_body.replace('{{times}}', rows)

@@ -29,7 +29,7 @@ body.dark {
         background-color: #222;
     }
     tr:hover {
-        background-color: #1B1B1B;
+        background-color: #333;
     }
     ::-webkit-input-placeholder { color: $placeholder-color-dark; }
     :-moz-placeholder { color: $placeholder-color-dark; }
@@ -42,6 +42,7 @@ body.dark {
     margin: 0 auto;
 }
 .timesheet {
+    position: relative;
     margin: 0 auto;
     width: 100%;
 }
@@ -80,10 +81,28 @@ input {
     height: 100%;
 }
 td.checked {
-    background-color: lime;
+    background-color: lime !important;
+    background-color: #207F92 !important;
     color: #fff;
+    &:active {
+        box-shadow: inset 1px 1px 2px #000;
+    }
 }
+td {
+    &:hover:not(.checked) {
+        box-shadow: inset 1px 1px 2px #000;
+    }
+}
+// .col-1:hover {
+//     background-color: red;
+// }
 
+// tr th:nth-child(*):hover {
+//     background-color: red;
+// }
+.fa-check {
+    text-shadow: 1px 1px 0px #000;
+}
 
 
 
@@ -102,9 +121,22 @@ input[type=submit] {
         background-color: #eee;
     }
     &:active {
-        background-color: #111;
-        color: #fff;
+        background-color: #ddd;
     }
 }
 
+}
+
+.add-row {
+    position: absolute;
+left: -45px;
+height: 42px;
+width: 45px;
+background-color: #3D3D3D;
+color: #fff;
+text-align: center;
+padding: 0;
+font-size: 12px;
+line-height: 1;
+&:hover {background-color: #4d4d4d}
 }
