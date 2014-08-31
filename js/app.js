@@ -110,23 +110,10 @@ $(function(){
             timesheet_body = timesheet_body.replace('{{times}}', rows)
         }
 
-
-        
-        // timesheet_body += row_template;
-
         template = template.replace('{{timesheet-body}}', timesheet_body);
         $('#output').append(template)
-        // $('.timesheet-body').append('<tr class="time-row"><td class="leftside"><input class="company" type="text" placeholder=""></td></tr>');
     }   
-        
 
-
-    //     if( employeeTimesheets[0].work[1].day[i] ){
-    //         $('.time-row').append('<td class="checks checked"><i class="fa fa-check"></i></td>');
-    //     } else {
-    //         $('.time-row').append('<td class="checks"></td>');
-    //     }
-    // }
 
 
     var settings = [
@@ -150,7 +137,6 @@ $(function(){
             if(!thisDB.objectStoreNames.contains("timesheets")) {
                 var objectStore = thisDB.createObjectStore("timesheets",{ keyPath: "date" });
                 objectStore.createIndex('date', 'date', {unique: true});
-                // thisDb.createObjectStore("test2", { autoIncrement: true });
             }
             if(!thisDB.objectStoreNames.contains("settings")) {
                 var objectStore = thisDB.createObjectStore("settings",{ keyPath: "email" });
@@ -172,7 +158,7 @@ $(function(){
         function saveTimesheet(){
             var transaction = db.transaction(['timesheets'],'readwrite');
             var store = transaction.objectStore('timesheets');
-            var request = store.add(employeeTimesheets[0]);
+            var request = store.add(employeeTimesheets[1]);
             request.onsuccess = function(e){
                 console.log('Saved');
             }
