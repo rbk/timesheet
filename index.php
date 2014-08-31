@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="./css/app.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="//code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="js/underscores.1.7.js"></script>
 </head>
 <body class="dark">
 <div class="container">
@@ -29,21 +30,78 @@
         }
 
     </style>
-    <section id="general">
-        <h2>
-            <?php echo Date('l - F dS, Y' ); ?>
-            <span class="tracked">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Tracked: 7.5</span>
-            <span style="float:right;">
-                Name:&nbsp;<input id="name" type="text" placeholder="your name" style="width: 200px">
-            </span>
-        </h2>
-    </section>
 
-    <div class="timesheet">
+
+    <script id="timesheet-template" type="text/template">
+    <div id="id-{{date2}}" class="timesheet">
+        <section id="general">
+            <h2>
+                <span class="date">{{date}}
+                <?php //echo Date('l - F dS, Y' ); ?></span>
+                <span class="tracked">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Tracked: {{totalHours}}</span>
+                <span style="float:right;">
+                    // Name:&nbsp;<input id="name" type="text" placeholder="your name" style="width: 200px" value="{{name}}">
+                </span>
+            </h2>
+        </section>
+    <table>
+        <thead>
+            <tr>
+                <th class="leftside"></th>
+                <th>8</th><th>8</th><th>8</th><th>8</th>
+                <th>9</th><th>9</th><th>9</th><th>9</th>
+                <th>10</th><th>10</th><th>10</th><th>10</th>
+                <th>11</th><th>11</th><th>11</th><th>11</th>
+                <th>12</th><th>12</th><th>12</th><th>12</th>
+                <th>1</th><th>1</th><th>1</th><th>1</th>
+                <th>2</th><th>2</th><th>2</th><th>2</th>
+                <th>3</th><th>3</th><th>3</th><th>3</th>
+                <th>4</th><th>4</th><th>4</th><th>4</th>
+                <th>5</th><th>5</th><th>5</th><th>5</th>
+                <th>6</th><th>6</th><th>6</th><th>6</th>
+            </tr>
+            <thead>
+            <tbody>
+            {{timesheet-body}}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <br>
+    <br>
+    </script>
+    <script type="text/template" id="row-template">
+        <tr data-id="{{id}}" class="time-row">
+            <td class="leftside">
+                <input class="company" type="text" placeholder="" value="{{company}}">
+            </td>
+            {{times}}
+        </tr>
+    </script>
+
+    <div id="output"></div>
+<!--     <br>
+    <br>
+    <br>
+
+    <div id="" class="timesheet">
+        <section id="general">
+            <h2>
+                <span class="date"><?php echo Date('l - F dS, Y' ); ?></span>
+                <span class="tracked">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Tracked: 7.5</span>
+                <span style="float:right;">
+                    Name:&nbsp;<input id="name" type="text" placeholder="your name" style="width: 200px">
+                </span>
+            </h2>
+        </section>
         <table>
             <tr>
                 <td class="leftside"></td>
@@ -92,41 +150,36 @@
                 <td>6</td>
                 <td>6</td>
             </tr>
+            <tbody class="timesheet-body">
                 
-            <?php for( $i=0; $i<20; $i++ ) : ?>
-            <tr>
+            </tbody> 
+        
+            <tr class="time-row">
                 <td class="leftside"><input class="company" type="text" placeholder=""></td>
-                <?php 
-                    for($td=0;$td<44;$td++){
-                        echo '<td class="checks"></td>';
-                    } 
-
-                ?>
             </tr>
-            <?php endfor; ?>
+        
      
         </table>
-    </div> <!-- end timesheet -->
-    <h2>Money Made Today: $45,439.03</h2>
-</div> <!-- end .container -->
-<script>
-    $(function(){
-
-    $('td.checks').on('click', function(){
-        if( $(this).hasClass('checked') ){
-            $(this).html('');
-            $(this).removeClass('checked');
-        } else {
-            $(this).html('<i class="fa fa-check"></i>')
-            $(this).addClass('checked')
-        }
-    });
-
-});
-</script>
+    </div> end timesheet -->
+ </div> <!-- end .container -->
 
 
 
 <script src="./js/app.js"></script>
+<script>
+    $(function(){
+
+        $('.timesheet').on('click', 'td.checks', function(){
+            if( $(this).hasClass('checked') ){
+                $(this).html('');
+                $(this).removeClass('checked');
+            } else {
+                $(this).html('<i class="fa fa-check"></i>')
+                $(this).addClass('checked')
+            }
+        });
+
+});
+</script>
 </body>
 </html>

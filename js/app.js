@@ -10,9 +10,12 @@ $(function(){
 	} else {
         var idbSupported = true;
     }
-    // var random = Math.floor(Math.random()*100); console.log( 'Lucky Number: ' + random );
+    var random = Math.floor(Math.random()*100); console.log( 'Lucky Number: ' + random );
 
     var date = new Date();
+
+    var timestamp = date.getTime();
+
     var dateFull = parseInt(date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear();
    // console.log( 'Month: ' + parseInt(date.getMonth()+1) );
    // console.log( 'Day: ' + date.getDate() );
@@ -24,18 +27,99 @@ $(function(){
         { 
             name: 'employee name', 
             date: dateFull,
-                work: [
-                { 
-                    company: 'Company Name',
-                    totalHours: 3.5
-                },
-                { 
-                    company: 'Another Company Name',
-                    totalHours: 1.5
-                }
-            ] 
+            totalHours: 0,
+            work: [
+                    { 
+                        id: '1',
+                        company: '',
+                        description: '',
+                        totalHours: 10, // sumb of true on day multiplied by 15
+                        day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    },
+                    { 
+                        id: '2',
+                        company: '',
+                        totalHours: 100, // sumb of true on day multiplied by 15
+                        day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    }
+                ] 
+        },
+        { 
+            name: 'employee name', 
+            date: dateFull,
+            totalHours: 0,
+            work: [
+                    { 
+                        id: '1',
+                        company: '',
+                        description: '',
+                        totalHours: 10, // sumb of true on day multiplied by 15
+                        day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    },
+                    { 
+                        id: '2',
+                        company: '',
+                        totalHours: 100, // sumb of true on day multiplied by 15
+                        day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    }
+                ] 
         }
     ];
+
+  
+
+    for( var sheets=0;sheets<employeeTimesheets.length;sheets++ ){
+        var id = employeeTimesheets[sheets].date;
+        var template = $('#timesheet-template').html();
+        var timesheet_body = '';
+        template = template.replace('{{date}}',employeeTimesheets[sheets].date);
+        template = template.replace('{{date2}}',employeeTimesheets[sheets].date);
+        template = template.replace('{{totalHours}}',employeeTimesheets[sheets].totalHours);
+        template = template.replace('{{name}}',employeeTimesheets[sheets].name);
+
+
+
+        var work = employeeTimesheets[sheets].work;
+        var row_template = $('#row-template').html();
+
+        //     console.log( work[i] )
+        //     $('#id-' + id).find('.timesheet-body').append(row_template)
+        for(var i=0; i<work.length; i++ ){
+            timesheet_body += row_template.replace('{{company}}', work[i].company);
+            timesheet_body = timesheet_body.replace('{{id}}', work[i].id);
+
+            var day = work[i].day;
+            var rows = '';
+            for(var d=0;d<day.length;d++){
+                // console.log( day[d] )
+                if( day[d] == 1 ){
+                    rows += '<td class="checks checked"><i class="fa fa-check"></i></td>';
+                } else {                    
+                    rows += '<td class="checks"></td>';
+                }
+            }
+            timesheet_body = timesheet_body.replace('{{times}}', rows)
+        }
+
+
+        
+        // timesheet_body += row_template;
+
+        template = template.replace('{{timesheet-body}}', timesheet_body);
+        $('#output').append(template)
+        // $('.timesheet-body').append('<tr class="time-row"><td class="leftside"><input class="company" type="text" placeholder=""></td></tr>');
+    }   
+        
+
+
+    //     if( employeeTimesheets[0].work[1].day[i] ){
+    //         $('.time-row').append('<td class="checks checked"><i class="fa fa-check"></i></td>');
+    //     } else {
+    //         $('.time-row').append('<td class="checks"></td>');
+    //     }
+    // }
+
+
     var settings = [
         {
             name: 'Guest123',
@@ -105,8 +189,8 @@ $(function(){
                 var setting = request.result;
                 console.log( '---Settings---' );
                 console.log( request.result );
-                $('#name').val( setting.name );
-                // $('body').addClass( setting.theme );
+                // $('#name').val( setting.name );
+                $('body').addClass( setting.theme );
             };
 
         }

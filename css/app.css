@@ -4011,118 +4011,108 @@ Copyright (c) 2014 Daniel Eden
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  transition: all .2s ease-in-out;
 }
 
-/* line 13, ../sass/app.scss */
+/* line 12, ../sass/app.scss */
 body {
   font-family: arial, helvetica, sans-serif;
   font-size: 14px;
 }
-/* line 16, ../sass/app.scss */
+/* line 15, ../sass/app.scss */
 body ::-webkit-input-placeholder {
   color: #dddddd;
 }
-/* line 17, ../sass/app.scss */
+/* line 16, ../sass/app.scss */
 body :-moz-placeholder {
   color: #dddddd;
 }
-/* line 18, ../sass/app.scss */
+/* line 17, ../sass/app.scss */
 body ::-moz-placeholder {
   color: #dddddd;
 }
-/* line 19, ../sass/app.scss */
+/* line 18, ../sass/app.scss */
 body :-ms-input-placeholder {
   color: #dddddd;
 }
 
-/* line 22, ../sass/app.scss */
+/* line 21, ../sass/app.scss */
 body.dark {
   background-color: #222;
   color: #999;
 }
-/* line 25, ../sass/app.scss */
+/* line 24, ../sass/app.scss */
 body.dark table, body.dark td, body.dark th {
   border: 1px solid #666;
 }
-/* line 28, ../sass/app.scss */
+/* line 27, ../sass/app.scss */
 body.dark input {
   color: #999;
   background-color: #222;
 }
-/* line 32, ../sass/app.scss */
+/* line 31, ../sass/app.scss */
 body.dark tr:hover {
-  background-color: #333;
+  background-color: #1B1B1B;
 }
-/* line 35, ../sass/app.scss */
+/* line 34, ../sass/app.scss */
 body.dark ::-webkit-input-placeholder {
   color: #444444;
 }
-/* line 36, ../sass/app.scss */
+/* line 35, ../sass/app.scss */
 body.dark :-moz-placeholder {
   color: #444444;
 }
-/* line 37, ../sass/app.scss */
+/* line 36, ../sass/app.scss */
 body.dark ::-moz-placeholder {
   color: #444444;
 }
-/* line 38, ../sass/app.scss */
+/* line 37, ../sass/app.scss */
 body.dark :-ms-input-placeholder {
   color: #444444;
 }
 
-/* line 40, ../sass/app.scss */
+/* line 39, ../sass/app.scss */
 .container {
   padding: 1em;
   width: 90%;
   margin: 0 auto;
 }
 
-/* line 45, ../sass/app.scss */
+/* line 44, ../sass/app.scss */
 .timesheet {
   margin: 0 auto;
   width: 100%;
 }
 
-/* line 49, ../sass/app.scss */
+/* line 48, ../sass/app.scss */
 table {
   border: 1px solid #fff;
   table-layout: fixed;
   width: 100%;
 }
 
-/* line 54, ../sass/app.scss */
+/* line 53, ../sass/app.scss */
 td, th {
   text-align: center;
   border: 1px solid #666;
   width: 22px;
   height: 22px;
   transition: background .2s ease-in-out;
-}
-
-/* line 61, ../sass/app.scss */
-tr {
-  transition: background .2s ease-in-out;
+  font-weight: normal;
 }
 
 /* line 64, ../sass/app.scss */
-tr:hover {
-  background-color: #eee;
-}
-
-/* line 67, ../sass/app.scss */
 td:hover {
   cursor: default;
 }
 
-/* line 70, ../sass/app.scss */
+/* line 67, ../sass/app.scss */
 .leftside {
   width: 200px;
   padding: 0 3px;
   margin: 0;
 }
 
-/* line 76, ../sass/app.scss */
+/* line 73, ../sass/app.scss */
 input {
   outline: 0;
   background-color: transparent;
@@ -4133,13 +4123,13 @@ input {
   height: 100%;
 }
 
-/* line 85, ../sass/app.scss */
+/* line 82, ../sass/app.scss */
 td.checked {
   background-color: lime;
   color: #fff;
 }
 
-/* line 96, ../sass/app.scss */
+/* line 93, ../sass/app.scss */
 body button,
 body input[type=submit] {
   width: auto;
@@ -4150,12 +4140,12 @@ body input[type=submit] {
   padding: 6px 15px;
   color: #000;
 }
-/* line 104, ../sass/app.scss */
+/* line 101, ../sass/app.scss */
 body button:hover,
 body input[type=submit]:hover {
   background-color: #eee;
 }
-/* line 107, ../sass/app.scss */
+/* line 104, ../sass/app.scss */
 body button:active,
 body input[type=submit]:active {
   background-color: #111;
