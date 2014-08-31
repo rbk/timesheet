@@ -43,13 +43,11 @@ $(function(){
             day = "Saturday";
             break;
     };
-
-    
-
-    var employeeTimesheets = [
+    var todaysTimeSheet = [
         { 
             name: '', 
             date: dateFull,
+            day: '',
             totalHours: 0,
             work: [
                     { 
@@ -60,42 +58,61 @@ $(function(){
                         day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     }
                 ] 
-        },
+        }
+    
+    ];
+    var employeeTimesheets = [
         { 
-            name: 'Richard', 
-            date: "8-29-2014",
-            totalHours: 8,
+            name: '', 
+            date: '',
+            day: '',
+            totalHours: 0,
             work: [
                     { 
                         id: '1',
-                        company: 'Email/Server Issue',
+                        company: '',
                         description: '',
-                        totalHours: 10, // sumb of true on day multiplied by 15
-                        day : [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    },
-                    { 
-                        id: '2',
-                        company: 'Drysdales',
-                        description: '',
-                        totalHours: 10, // sumb of true on day multiplied by 15
-                        day : [0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    },
-                    { 
-                        id: '3',
-                        company: 'Gurustu',
-                        description: '',
-                        totalHours: 10, // sumb of true on day multiplied by 15
-                        day : [0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    },
-                    { 
-                        id: '4',
-                        company: 'CampGrit',
-                        description: '',
-                        totalHours: 10, // sumb of true on day multiplied by 15
+                        totalHours: 0, // sumb of true on day multiplied by 15
                         day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     }
                 ] 
         }
+        // ,
+        // { 
+        //     name: 'Richard', 
+        //     date: "8-29-2014",
+        //     totalHours: 8,
+        //     work: [
+        //             { 
+        //                 id: '1',
+        //                 company: 'Email/Server Issue',
+        //                 description: '',
+        //                 totalHours: 10, // sumb of true on day multiplied by 15
+        //                 day : [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        //             },
+        //             { 
+        //                 id: '2',
+        //                 company: 'Drysdales',
+        //                 description: '',
+        //                 totalHours: 10, // sumb of true on day multiplied by 15
+        //                 day : [0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        //             },
+        //             { 
+        //                 id: '3',
+        //                 company: 'Gurustu',
+        //                 description: '',
+        //                 totalHours: 10, // sumb of true on day multiplied by 15
+        //                 day : [0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        //             },
+        //             { 
+        //                 id: '4',
+        //                 company: 'CampGrit',
+        //                 description: '',
+        //                 totalHours: 10, // sumb of true on day multiplied by 15
+        //                 day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        //             }
+        //         ] 
+        // }
     ];
 
     // Bam... reusability
@@ -170,7 +187,9 @@ $(function(){
             db = e.target.result;
             console.log( 'Connected to database: "' + db_name + '"');
 
-            printTimeSheets( employeeTimesheets );
+            printTimeSheets( todaysTimeSheet );
+
+            // printTimeSheets( employeeTimesheets );
             saveTimesheet();
             // init();
             // getSettings( db );
@@ -178,13 +197,15 @@ $(function(){
             getAllItems(function(items){
                 var len = items.length;
                 for (var i = 0; i < len; i += 1) {
-                    console.log(items[i]);
-                    console.log( 'push this to array and pass to print method' )
+                    employeeTimesheets.push( items[i] );
+                    // console.log(items[i]);
+                    console.log( employeeTimesheets );
+                    // console.log( 'push this to array and pass to print method' )
                 }
             });
         };
 
-        function saveTimesheet(){
+        function saveTimesheet(  ){
             var transaction = db.transaction(['timesheets'],'readwrite');
             var store = transaction.objectStore('timesheets');
             var request = store.add(employeeTimesheets[0]);
