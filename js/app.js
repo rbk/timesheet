@@ -14,7 +14,7 @@ $(function(){
         var idbSupported = true;
     }
 
-    var random = Math.floor(Math.random()*100); console.log( 'Lucky Number: ' + random );
+    // var random = Math.floor(Math.random()*100); console.log( 'Lucky Number: ' + random );
     var date = new Date();
     var day;
     var timestamp = date.getTime();
@@ -43,24 +43,22 @@ $(function(){
             day = "Saturday";
             break;
     };
-    var todaysTimeSheet = [
-        { 
-            name: '', 
-            date: dateFull,
-            day: '',
-            totalHours: 0,
-            work: [
-                    { 
-                        id: '1',
-                        company: '',
-                        description: '',
-                        totalHours: 0, // sumb of true on day multiplied by 15
-                        day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    }
-                ] 
-        }
+    var todaysTimesheet = { 
+        name: '', 
+        date: dateFull,
+        day: day,
+        totalHours: 0,
+        work: [
+                { 
+                    id: '1',
+                    company: '',
+                    description: '',
+                    totalHours: 0, // sumb of true on day multiplied by 15
+                    day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                }
+            ] 
+    };
     
-    ];
     var employeeTimesheets = [
         { 
             name: '', 
@@ -164,7 +162,7 @@ $(function(){
         var db;
         var db_name = 'timesheets';
         var transaction, store;
-        var request = indexedDB.open(db_name,8);
+        var request = indexedDB.open(db_name,1);
         
         request.onupgradeneeded = function(e) {
             console.log( 'Upgrading Database!' );
@@ -185,30 +183,30 @@ $(function(){
         };
         request.onsuccess = function(e) {
             db = e.target.result;
-            console.log( 'Connected to database: "' + db_name + '"');
+            checkForTodaysTimesheet(db);
+            var timesheets = [];
 
-            printTimeSheets( todaysTimeSheet );
+            // console.log( 'Connected to database: "' + db_name + '"');
+            // printTimeSheets( todaysTimeSheet );
 
-            // printTimeSheets( employeeTimesheets );
-            saveTimesheet();
+            // saveTimesheet();
             // init();
             // getSettings( db );
             // getTimesheets( db );
-            getAllItems(function(items){
+            getAllTimesheets(function(items){
                 var len = items.length;
                 for (var i = 0; i < len; i += 1) {
-                    employeeTimesheets.push( items[i] );
-                    // console.log(items[i]);
-                    console.log( employeeTimesheets );
-                    // console.log( 'push this to array and pass to print method' )
+                    timesheets.push( items[i] );
+                    console.log( timesheets );
                 }
+                printTimeSheets( timesheets );
             });
         };
 
-        function saveTimesheet(  ){
+        function saveTimesheet( timesheet ){
             var transaction = db.transaction(['timesheets'],'readwrite');
             var store = transaction.objectStore('timesheets');
-            var request = store.add(employeeTimesheets[0]);
+            var request = store.add(timesheet);
             request.onsuccess = function(e){
                 console.log('Saved');
             }
@@ -252,7 +250,19 @@ $(function(){
                 console.log( timesheets );
             };
         }
-        function getAllItems(callback) {
+        function checkForTodaysTimesheet(db){
+            var transaction = db.transaction(['timesheets']);
+            var objectStore = transaction.objectStore('timesheets');
+            var request = objectStore.get(dateFull);
+            request.onsuccess = function(event){
+                var todaysSheet = request.result;
+                if( !todaysSheet ){
+                    saveTimesheet( todaysTimesheet );
+                    location.reload();
+                }
+            };
+        }
+        function getAllTimesheets(callback) {
             var storeName = 'timesheets';
             var trans = db.transaction(storeName, 'readwrite');
             var store = trans.objectStore(storeName);
@@ -278,6 +288,22 @@ $(function(){
         }
     
     }; // if indexeddb
+
+
+    /*
+    *
+    *  Algorithm
+    *
+    */ 
+    // ----user connets.
+    // -----check for entry with todays date
+    // ----if no entry, save default sheet
+    // -----print all sheets
+
+    // on change of sheet
+    // get parent id infoformation
+    // turn data td's into array mimicing default
+    // save
 
 
 });

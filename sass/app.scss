@@ -70,6 +70,7 @@ tr:hover {
 }
 td:hover {
     cursor: default;
+    background-color: #eee !important;
 }
 .leftside {
     width: 200px;
@@ -88,8 +89,8 @@ input {
 }
 td.checked {
     background-color: lime !important;
-    background-color: #207F92 !important;
-    background-color: rgb(32, 146, 54)!important;
+    // background-color: #207F92 !important;
+    // background-color: rgb(32, 146, 54)!important;
     color: #fff;
     &:active {
         box-shadow: inset 1px 1px 2px #000;

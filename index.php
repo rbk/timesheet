@@ -9,18 +9,18 @@
     <meta name="description" content="">
     <link rel="shortcut icon" href="">
     <link rel="stylesheet" type="text/css" href="./css/app.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="//code.jquery.com/jquery-1.11.1.js"></script>
+    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <!-- // <script src="//code.jquery.com/jquery-1.11.1.js"></script> -->
+    <script src="js/jquery.1.8.js"></script>
     <script src="js/underscores.1.7.js"></script>
 </head>
-<body class="dark">
+<body class="">
 <div class="container">
     <nav style="display:none;">
         <button>Toggle Theme</button>
         <input type="submit">
     </nav>
     <br><br>
-    test
  
     <script id="timesheet-template" type="text/template">
     <div id="id-{{date2}}" class="timesheet">
@@ -175,7 +175,7 @@
                 $(this).html('');
                 $(this).removeClass('checked');
             } else {
-                $(this).html('<i class="fa fa-check"></i>')
+                $(this).html('<i class="fa fa-check">X</i>')
                 $(this).addClass('checked')
             }
         });
@@ -185,14 +185,16 @@
         });
 
         // Too distracting
-        $(document).on('mouseover', 'td.checks', function(){
-            // console.log( $(this) )
-            var column = $(this).attr('data-col');
-            $('td[data-col='+column+']').css({'background-color':'#333'});
-        }).on( 'mouseout', '.checks', function(){
-            var column = $(this).attr('data-col');
-            $('td[data-col='+column+']').attr('style', '');
-        });
+        // $(document).on('mouseover', 'td.checks', function(){
+        //     // console.log( $(this) )
+        //     var column = $(this).attr('data-col');
+        //     $('td[data-col='+column+']').css({'background-color':'#333'});
+        // }).on( 'mouseout', '.checks', function(){
+        //     var column = $(this).attr('data-col');
+        //     $('td[data-col='+column+']').attr('style', '');
+        // });
+
+
 
 });
 </script>
