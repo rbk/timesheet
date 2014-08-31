@@ -4146,15 +4146,19 @@ td.checked:active {
 
 /* line 99, ../sass/app.scss */
 td:hover:not(.checked) {
+  background-color: #222;
+}
+/* line 101, ../sass/app.scss */
+td:hover:not(.checked):active {
   box-shadow: inset 1px 1px 2px #000;
 }
 
-/* line 110, ../sass/app.scss */
+/* line 113, ../sass/app.scss */
 .fa-check {
   text-shadow: 1px 1px 0px #000;
 }
 
-/* line 119, ../sass/app.scss */
+/* line 122, ../sass/app.scss */
 body button,
 body input[type=submit] {
   width: auto;
@@ -4165,18 +4169,18 @@ body input[type=submit] {
   padding: 6px 15px;
   color: #000;
 }
-/* line 127, ../sass/app.scss */
+/* line 130, ../sass/app.scss */
 body button:hover,
 body input[type=submit]:hover {
   background-color: #eee;
 }
-/* line 130, ../sass/app.scss */
+/* line 133, ../sass/app.scss */
 body button:active,
 body input[type=submit]:active {
   background-color: #ddd;
 }
 
-/* line 137, ../sass/app.scss */
+/* line 140, ../sass/app.scss */
 .add-row {
   position: absolute;
   left: -45px;
@@ -4189,7 +4193,7 @@ body input[type=submit]:active {
   font-size: 12px;
   line-height: 1;
 }
-/* line 148, ../sass/app.scss */
+/* line 151, ../sass/app.scss */
 .add-row:hover {
   background-color: #4d4d4d;
 }

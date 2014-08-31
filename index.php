@@ -184,14 +184,14 @@
         });
 
         // Too distracting
-        // $('.timesheet').on('mouseover', 'td.checks', function(){
-        //     // console.log( $(this) )
-        //     var column = $(this).attr('data-col');
-        //     $('td[data-col='+column+']').css({'background-color':'#333'});
-        // }).on( 'mouseout', '.checks', function(){
-        //     var column = $(this).attr('data-col');
-        //     $('td[data-col='+column+']').attr('style', '');
-        // });
+        $('.timesheet').on('mouseover', 'td.checks', function(){
+            // console.log( $(this) )
+            var column = $(this).attr('data-col');
+            $('td[data-col='+column+']').css({'background-color':'#333'});
+        }).on( 'mouseout', '.checks', function(){
+            var column = $(this).attr('data-col');
+            $('td[data-col='+column+']').attr('style', '');
+        });
 
 });
 </script>
