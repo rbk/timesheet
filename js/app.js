@@ -1,4 +1,18 @@
 $(function(){
+
+    // Reload page every 12 hours?
+    // var siad = 60*60*24/2;
+    // console.log( siad )
+    // localStorage.setItem('timesheet_reload_time', 0);
+    // var counter = localStorage.getItem('timesheet_reload_time');
+    // t = setInterval(function(){
+    //     counter = parseInt(counter + 10);
+    //     localStorage.setItem('timesheet_reload_time', counter);
+    //     if( counter == siad ){
+    //         localStorage.setItem('timesheet_reload_time', 0)
+    //         location.reload();
+    //     }
+    // }, 100);
     
     var idbSupported = false;
 
@@ -115,6 +129,9 @@ $(function(){
 
     // Bam... reusability
     function printTimeSheets( employeeTimesheets ){
+
+        employeeTimesheets = employeeTimesheets.reverse();
+
         for( var sheets=0;sheets<employeeTimesheets.length;sheets++ ){
             var id = employeeTimesheets[sheets].date;
             var template = $('#timesheet-template').html();
@@ -130,12 +147,11 @@ $(function(){
 
             for(var i=0; i<work.length; i++ ){
                 timesheet_body += row_template.replace('{{company}}', work[i].company);
-                timesheet_body = timesheet_body.replace('{{id}}', work[i].id);
+                timesheet_body = timesheet_body.replace('{{id}}', i);
 
                 var day = work[i].day;
                 var rows = '';
                 for(var d=0;d<day.length;d++){
-                    // console.log( day[d] )
                     if( day[d] == 1 ){
                         rows += '<td data-index="'+ employeeTimesheets[sheets].date+'" data-col="'+d+'" class="checks checked"><i class="fa fa-check"></i></td>';
                     } else {                    
@@ -319,9 +335,29 @@ $(function(){
         console.log( $(this).attr('data-index') );
         console.log( $(this).parent().find('td.checks').length );
 
+        var work_id = $(this).parent().attr('data-id');
+
+        if( $(this).hasClass('checked') ){
+            $(this).html('');
+            $(this).removeClass('checked');
+        } else {
+            $(this).html('<i class="fa fa-check">X</i>')
+            $(this).addClass('checked')
+        }
+        // return;
+
         var td = $(this).parent().find('td.checks');
+        // console.log(td.length)
         var timesheet_id = $(this).attr('data-index');
         var tds = [];
+        td.each(function(){
+            if( $(this).hasClass('checked') ){
+                tds.push(1);
+            } else {
+                tds.push(0);
+            }
+        });
+        console.log( tds );
 
         // var timesheet = updateTimesheet( timesheet_id );
         var transaction = db.transaction(['timesheets'],'readwrite');

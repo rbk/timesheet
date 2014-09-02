@@ -170,15 +170,15 @@
 <script>
     $(function(){
 
-        $(document).on('click', 'td.checks', function(){
-            if( $(this).hasClass('checked') ){
-                $(this).html('');
-                $(this).removeClass('checked');
-            } else {
-                $(this).html('<i class="fa fa-check">X</i>')
-                $(this).addClass('checked')
-            }
-        });
+        // $(document).on('click', 'td.checks', function(){
+            // if( $(this).hasClass('checked') ){
+            //     $(this).html('');
+            //     $(this).removeClass('checked');
+            // } else {
+            //     $(this).html('<i class="fa fa-check">X</i>')
+            //     $(this).addClass('checked')
+            // }
+        // });
         $(document).on('click', '.add-row', function(){
             var row = $('#full-row-template').html();
             $(this).parent().find('tbody').append(row);
