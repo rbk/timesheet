@@ -148,6 +148,8 @@ $(function(){
             for(var i=0; i<work.length; i++ ){
                 timesheet_body += row_template.replace('{{company}}', work[i].company);
                 timesheet_body = timesheet_body.replace('{{id}}', i);
+                timesheet_body = timesheet_body.replace('{{company-id}}', employeeTimesheets[sheets].date);
+
 
                 var day = work[i].day;
                 var rows = '';
@@ -332,8 +334,6 @@ $(function(){
 
 
     $(document).on('click', 'td.checks', function(){
-        // console.log( $(this).attr('data-index') );
-        // console.log( $(this).parent().find('td.checks').length );
 
         var work_id = $(this).parent().attr('data-id');
 
@@ -344,12 +344,11 @@ $(function(){
             $(this).html('<i class="fa fa-check"></i>')
             $(this).addClass('checked')
         }
-        // return;
 
         var td = $(this).parent().find('td.checks');
-        // console.log(td.length)
         var timesheet_id = $(this).attr('data-index');
         var tds = [];
+
         td.each(function(){
             if( $(this).hasClass('checked') ){
                 tds.push(1);
@@ -357,7 +356,6 @@ $(function(){
                 tds.push(0);
             }
         });
-        console.log( tds );
 
         var transaction = db.transaction(['timesheets'],'readwrite');
         var store = transaction.objectStore('timesheets');
@@ -366,23 +364,40 @@ $(function(){
 
             timesheet = e.target.result;
             timesheet.name = $('#name').val();
-
             timesheet.work[work_id].day = tds;
             
-            console.log( timesheet );
-            store.put( timesheet );
-        
+            // console.log( timesheet );
+            store.put( timesheet );        
+        };
+    });
+
+    $(document).on( 'keyup', 'input.company', function(){
+
+        var company_or_note = $(this).val();
+        var timesheet_id = $(this).parent().attr('data-id');
+        var row_id = $(this).parent().parent().attr('data-id');
+
+        var transaction = db.transaction(['timesheets'],'readwrite');
+        var store = transaction.objectStore('timesheets');
+        var request = store.get( timesheet_id );
+        request.onsuccess = function(e){
+
+            timesheet = e.target.result;
+            timesheet.work[row_id].company = company_or_note;
+            store.put( timesheet );        
         };
 
+    });
+    $(document).on('click', '.add-row', function(){
+        var row = $('#full-row-template').html();
+        $(this).parent().find('tbody').append(row);
+    });
+    // At some point recalculate total...
 
 
-        // saveNewTimesheet( timesheet );
-        // console.log( timesheet )
-        for( var i=0; i<td.length; i++ ){
-            // if( th[i] )
-            // console.log( td )
-        }
-    })
+
+
+
 
 
 });

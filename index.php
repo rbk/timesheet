@@ -23,12 +23,12 @@
     <br><br>
  
     <script id="timesheet-template" type="text/template">
-    <div id="id-{{date2}}" class="timesheet">
+    <div id="{{date2}}" class="timesheet">
         <button class="add-row">Add Row</button>
         <section id="general">
             <h2>
                 <span class="date">{{day}}, {{date}}
-                <?php //echo Date('l - F dS, Y' ); ?></span>
+                </span>
                 <span class="tracked">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -69,7 +69,7 @@
     </script>
     <script type="text/template" id="row-template">
         <tr data-id="{{id}}" class="time-row">
-            <td class="leftside">
+            <td data-id="{{company-id}}" class="leftside">
                 <input class="company" type="text" placeholder="" value="{{company}}">
             </td>
             {{times}}
@@ -179,20 +179,20 @@
             //     $(this).addClass('checked')
             // }
         // });
-        $(document).on('click', '.add-row', function(){
-            var row = $('#full-row-template').html();
-            $(this).parent().find('tbody').append(row);
-        });
+        // $(document).on('click', '.add-row', function(){
+        //     var row = $('#full-row-template').html();
+        //     $(this).parent().find('tbody').append(row);
+        // });
 
         // Too distracting
-        // $(document).on('mouseover', 'td.checks', function(){
-        //     // console.log( $(this) )
-        //     var column = $(this).attr('data-col');
-        //     $('td[data-col='+column+']').css({'background-color':'#333'});
-        // }).on( 'mouseout', '.checks', function(){
-        //     var column = $(this).attr('data-col');
-        //     $('td[data-col='+column+']').attr('style', '');
-        // });
+        $(document).on('mouseover', 'td.checks', function(){
+            // console.log( $(this) )
+            var column = $(this).attr('data-col');
+            $('td[data-col='+column+']').css({'background-color':'#333'});
+        }).on( 'mouseout', '.checks', function(){
+            var column = $(this).attr('data-col');
+            $('td[data-col='+column+']').attr('style', '');
+        });
 
 
 
