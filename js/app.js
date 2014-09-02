@@ -216,7 +216,7 @@ $(function(){
                 var len = items.length;
                 for (var i = 0; i < len; i += 1) {
                     timesheets.push( items[i] );
-                    console.log( timesheets );
+                    // console.log( timesheets );
                 }
                 printTimeSheets( timesheets );
             });
@@ -362,7 +362,10 @@ $(function(){
         var request = store.get( timesheet_id );
         request.onsuccess = function(e){
 
+            var total = $('#'+timesheet_id+ ' td.checked').length;
             timesheet = e.target.result;
+            timesheet.totalHours = total*15/60;
+            $('#'+timesheet_id).find('.tracked').text( total*15/60 );
             timesheet.name = $('#name').val();
             timesheet.work[work_id].day = tds;
             
@@ -389,8 +392,37 @@ $(function(){
 
     });
     $(document).on('click', '.add-row', function(){
-        var row = $('#full-row-template').html();
-        $(this).parent().find('tbody').append(row);
+        
+        var timesheet_id = $(this).parent().attr('id');
+        var work_length;
+        var transaction = db.transaction(['timesheets'],'readwrite');
+        var store = transaction.objectStore('timesheets');
+        var request = store.get( timesheet_id );
+        request.onsuccess = function(e){
+            timesheet = e.target.result;
+
+            work_length = timesheet.work.length;
+            // console.log(timesheet.work.length);
+
+            var rowObject = {
+                id: work_length,
+                company: '',
+                description: '',
+                totalHours: 0,
+                day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            };
+
+            timesheet.work.push( rowObject )            
+            store.put( timesheet );        
+            
+            location.reload();
+            // var row = $('#full-row-template').html();
+            // row = row.replace('{{work-length}}', work_length );
+            // $('#'+timesheet_id+ ' tbody').append(row);
+
+        };
+
+
     });
     // At some point recalculate total...
 

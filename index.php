@@ -29,11 +29,14 @@
             <h2>
                 <span class="date">{{day}}, {{date}}
                 </span>
-                <span class="tracked">
+                <span class="tracked-wrap">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Tracked Time: {{totalHours}}</span>
+                    Tracked Time: 
+                    <span class="tracked">
+                    {{totalHours}}</span>
+                </span>
                 <span style="float:right;">
                     Name:&nbsp;<input id="name" type="text" placeholder="your name" style="width: 200px" value="{{name}}">
                 </span>
@@ -76,7 +79,7 @@
         </tr>
     </script>
     <script type="text/template" id="full-row-template">
-    <tr data-id="0" class="time-row">
+    <tr data-id="{{work-length}}" class="time-row">
             <td class="leftside">
                 <input class="company" type="text" placeholder="" value="">
             </td>
