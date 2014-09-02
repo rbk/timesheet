@@ -4112,7 +4112,6 @@ td, th {
 /* line 71, ../sass/app.scss */
 td:hover {
   cursor: default;
-  background-color: #eee !important;
 }
 
 /* line 75, ../sass/app.scss */

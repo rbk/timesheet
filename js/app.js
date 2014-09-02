@@ -64,7 +64,7 @@ $(function(){
         totalHours: 0,
         work: [
                 { 
-                    id: '1',
+                    id: 0,
                     company: '',
                     description: '',
                     totalHours: 0, // sumb of true on day multiplied by 15
@@ -332,8 +332,8 @@ $(function(){
 
 
     $(document).on('click', 'td.checks', function(){
-        console.log( $(this).attr('data-index') );
-        console.log( $(this).parent().find('td.checks').length );
+        // console.log( $(this).attr('data-index') );
+        // console.log( $(this).parent().find('td.checks').length );
 
         var work_id = $(this).parent().attr('data-id');
 
@@ -341,7 +341,7 @@ $(function(){
             $(this).html('');
             $(this).removeClass('checked');
         } else {
-            $(this).html('<i class="fa fa-check">X</i>')
+            $(this).html('<i class="fa fa-check"></i>')
             $(this).addClass('checked')
         }
         // return;
@@ -359,15 +359,19 @@ $(function(){
         });
         console.log( tds );
 
-        // var timesheet = updateTimesheet( timesheet_id );
         var transaction = db.transaction(['timesheets'],'readwrite');
         var store = transaction.objectStore('timesheets');
         var request = store.get( timesheet_id );
         request.onsuccess = function(e){
+
             timesheet = e.target.result;
             timesheet.name = $('#name').val();
+
+            timesheet.work[work_id].day = tds;
+            
             console.log( timesheet );
             store.put( timesheet );
+        
         };
 
 
