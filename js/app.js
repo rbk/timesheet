@@ -329,39 +329,66 @@ $(function(){
     // get parent id infoformation
     // turn data td's into array mimicing default
     // save
+    var mouse_down = false;
+    $(document).on('mousedown', 'td.checks', function(e){
+        e.preventDefault();
+        mouse_down = true;
+    }).on('mouseup', function(){
+        mouse_down = false;
+    });
+    $(document).on('mouseover', 'td.checks', function(e){
+        e.preventDefault();    
+        if( mouse_down ){
+            if( !$(this).hasClass('checked') ){
+                // save as checked
+                // console.log( 'save as checked' );
+                saveTimeOnHoverOrClick( $(this) )
+                
+            } else {
+                saveTimeOnHoverOrClick( $(this) )
 
+            }
+        }
+    });
 
-    $(document).on('click', 'td.checks', function(){
+    $(document).on('click', 'td.checks', function(e){
+        e.preventDefault();
+        saveTimeOnHoverOrClick( $(this) )
+    });
+function saveTimeOnHoverOrClick( arg ){
+        var work_id = arg.parent().attr('data-id');
 
-        var work_id = $(this).parent().attr('data-id');
-
-        if( $(this).hasClass('checked') ){
-            $(this).html('');
-            $(this).removeClass('checked');
+        if( arg.hasClass('checked') ){
+            arg.html('');
+            arg.removeClass('checked');
         } else {
-            $(this).html('<i class="fa fa-check"></i>')
-            $(this).addClass('checked')
+            arg.html('<i class="fa fa-check"></i>')
+            arg.addClass('checked')
         }
 
-        var td = $(this).parent().find('td.checks');
-        var timesheet_id = $(this).attr('data-index');
+        var td = arg.parent().find('td.checks');
+        var timesheet_id = arg.attr('data-index');
         var tds = [];
 
+        // console.log( td.length )
+
         td.each(function(){
+            // console.log( $(this) )
             if( $(this).hasClass('checked') ){
                 tds.push(1);
             } else {
                 tds.push(0);
             }
         });
-
+        // console.log( tds )
+        var timesheet;
         var transaction = db.transaction(['timesheets'],'readwrite');
         var store = transaction.objectStore('timesheets');
         var request = store.get( timesheet_id );
         request.onsuccess = function(e){
-
-            var total = $('#'+timesheet_id+ ' td.checked').length;
             timesheet = e.target.result;
+            // console.log( 'work_id' + work_id )
+            var total = $('#'+timesheet_id+ ' td.checked').length;
             timesheet.totalHours = total*15/60;
             $('#'+timesheet_id).find('.tracked').text( total*15/60 );
             timesheet.name = $('#name').val();
@@ -370,7 +397,8 @@ $(function(){
             // console.log( timesheet );
             store.put( timesheet );        
         };
-    });
+
+}
 
     $(document).on( 'keyup', 'input.company', function(){
 
