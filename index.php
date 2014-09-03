@@ -16,7 +16,7 @@
 </head>
 <body class="dark">
 <div class="container">
-    
+
     <nav style="display:none;">
         <button class="nav-item" data-id="settings">Settings</button>
     </nav>
@@ -83,7 +83,7 @@
     <tr data-id="{{work-length}}" class="time-row">
             <td class="leftside">
                 <input class="company" type="text" placeholder="" value="">
-                <div class="remove-row"><i class="fa fa-trash remove-icon"></i></div> 
+                <div class="remove-row"><i class="fa fa-minus remove-icon"></i></div> 
             </td>
             <td data-col="0 " class="checks"></td>
             <td data-col="1 " class="checks"></td>
