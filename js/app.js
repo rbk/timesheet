@@ -329,32 +329,50 @@ $(function(){
     // get parent id infoformation
     // turn data td's into array mimicing default
     // save
+    $(document).on('click', 'td.checks', function(e){
+        e.preventDefault();
+        // saveTimeOnHoverOrClick( $(this) );
+    });
+
     var mouse_down = false;
     $(document).on('mousedown', 'td.checks', function(e){
         e.preventDefault();
         mouse_down = true;
+        $(this).addClass('changed first');
+        saveTimeOnHoverOrClick( $(this) );
     }).on('mouseup', function(){
         mouse_down = false;
+        $('td.checks').each(function(){
+            $(this).removeClass('changed');
+            $(this).removeClass('first');
+        });
     });
-    $(document).on('mouseover', 'td.checks', function(e){
-        e.preventDefault();    
-        if( mouse_down ){
-            if( !$(this).hasClass('checked') ){
-                // save as checked
-                // console.log( 'save as checked' );
-                saveTimeOnHoverOrClick( $(this) )
-                
-            } else {
-                saveTimeOnHoverOrClick( $(this) )
 
-            }
+    // var shift_down = false;
+    // $(document).on( 'keydown', function(e){
+    //     if( e.keyCode == 16 ){
+    //         shift_down = true;
+    //     }
+    // }).on( 'keyup', function(e){
+    //     if( e.keyCode == 16 ){
+    //         shift_down = false;
+    //     }
+    // });
+
+    $(document).on('mouseover', 'td.checks', function(e){
+        e.preventDefault();
+        if( mouse_down && !$(this).hasClass('changed') && !$(this).hasClass('first') ){
+            saveTimeOnHoverOrClick( $(this) );
+            $(this).addClass('changed');
+        }
+    }).on('mouseout', function(){
+        if( $(this).hasClass('changed') ){
+            saveTimeOnHoverOrClick( $(this) );
+            $(this).removeClass('changed first');
         }
     });
 
-    $(document).on('click', 'td.checks', function(e){
-        e.preventDefault();
-        saveTimeOnHoverOrClick( $(this) )
-    });
+
 function saveTimeOnHoverOrClick( arg ){
         var work_id = arg.parent().attr('data-id');
 
@@ -393,8 +411,6 @@ function saveTimeOnHoverOrClick( arg ){
             $('#'+timesheet_id).find('.tracked').text( total*15/60 );
             timesheet.name = $('#name').val();
             timesheet.work[work_id].day = tds;
-            
-            // console.log( timesheet );
             store.put( timesheet );        
         };
 
