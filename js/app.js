@@ -294,24 +294,20 @@ function saveTimeOnHoverOrClick( arg ){
         var timesheet_id = arg.parent().parent().parent().parent().attr('id');
         var tds = [];
 
-        // console.log( td.length )
-
         td.each(function(){
-            // console.log( $(this) )
             if( $(this).hasClass('checked') ){
                 tds.push(1);
             } else {
                 tds.push(0);
             }
         });
-        // console.log( tds )
+        
         var timesheet;
         var transaction = db.transaction(['timesheets'],'readwrite');
         var store = transaction.objectStore('timesheets');
         var request = store.get( timesheet_id );
         request.onsuccess = function(e){
             timesheet = e.target.result;
-            // console.log( 'work_id' + work_id )
             var total = $('#'+timesheet_id+ ' td.checked').length;
             timesheet.totalHours = total*15/60;
             $('#'+timesheet_id).find('.tracked').text( total*15/60 );
@@ -325,7 +321,7 @@ function saveTimeOnHoverOrClick( arg ){
     $(document).on( 'keyup', 'input.company', function(){
 
         var company_or_note = $(this).val();
-        var timesheet_id = $(this).parent().attr('data-id');
+        var timesheet_id = $(this).parent().parent().parent().parent().parent().attr('id');
         var row_id = $(this).parent().parent().attr('data-id');
 
         var transaction = db.transaction(['timesheets'],'readwrite');
@@ -348,10 +344,7 @@ function saveTimeOnHoverOrClick( arg ){
         var request = store.get( timesheet_id );
         request.onsuccess = function(e){
             timesheet = e.target.result;
-
             work_length = timesheet.work.length;
-            // console.log(timesheet.work.length);
-
             var rowObject = {
                 id: work_length,
                 company: '',
@@ -359,27 +352,20 @@ function saveTimeOnHoverOrClick( arg ){
                 totalHours: 0,
                 day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             };
-
             timesheet.work.push( rowObject )            
             store.put( timesheet );        
-            
-            // location.reload();
-            // var row = $('#'+timesheet_id + ' .time-row:first');
-            // row.replace('data-id="0"', 'data-id="'+ work_length +'"');
-            // var time_row_id = $('.time-row td').attr('data-id')
             var row = $('#full-row-template').html();
             row = row.replace('{{work-length}}', work_length );
-            // console.log(  );
-            // $(row + ' td:first').attr('data-id', timesheet_id );
-            // $(row).find('td.checks').attr('data-index', timesheet_id );
-            // console.log( $(row + ' td:first') )
             $('#'+timesheet_id+ ' tbody').append(row);
-
         };
 
 
     });
-    // At some point recalculate total...
+    $(document).on( 'click', '.remove-row', function(){
+        // remove-icon
+        var row_id = $(this).parent().parent().attr('data-id');
+        console.log( row_id );
+    });
 
 
 

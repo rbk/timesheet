@@ -4125,12 +4125,13 @@ td:hover {
 
 /* line 82, ../sass/app.scss */
 .leftside {
+  position: relative;
   width: 200px;
   padding: 0 3px;
   margin: 0;
 }
 
-/* line 88, ../sass/app.scss */
+/* line 89, ../sass/app.scss */
 input {
   outline: 0;
   background-color: transparent;
@@ -4141,35 +4142,35 @@ input {
   height: 100%;
 }
 
-/* line 97, ../sass/app.scss */
+/* line 98, ../sass/app.scss */
 td.checked {
   background-color: #209236 !important;
   color: #fff;
 }
-/* line 102, ../sass/app.scss */
+/* line 103, ../sass/app.scss */
 td.checked:hover {
   background-color: lime !important;
 }
-/* line 105, ../sass/app.scss */
+/* line 106, ../sass/app.scss */
 td.checked:active {
   box-shadow: inset 1px 1px 2px #000;
 }
 
-/* line 110, ../sass/app.scss */
+/* line 111, ../sass/app.scss */
 td:hover:not(.checked) {
   background-color: #222;
 }
-/* line 112, ../sass/app.scss */
+/* line 113, ../sass/app.scss */
 td:hover:not(.checked):active {
   box-shadow: inset 1px 1px 2px #000;
 }
 
-/* line 124, ../sass/app.scss */
+/* line 125, ../sass/app.scss */
 .fa-check {
   text-shadow: 1px 1px 0px #000;
 }
 
-/* line 133, ../sass/app.scss */
+/* line 134, ../sass/app.scss */
 body button,
 body input[type=submit] {
   width: auto;
@@ -4180,18 +4181,18 @@ body input[type=submit] {
   padding: 6px 15px;
   color: #000;
 }
-/* line 141, ../sass/app.scss */
+/* line 142, ../sass/app.scss */
 body button:hover,
 body input[type=submit]:hover {
   background-color: #eee;
 }
-/* line 144, ../sass/app.scss */
+/* line 145, ../sass/app.scss */
 body button:active,
 body input[type=submit]:active {
   background-color: #ddd;
 }
 
-/* line 151, ../sass/app.scss */
+/* line 152, ../sass/app.scss */
 .add-row {
   position: absolute;
   left: -45px;
@@ -4204,7 +4205,18 @@ body input[type=submit]:active {
   font-size: 12px;
   line-height: 1;
 }
-/* line 162, ../sass/app.scss */
+/* line 163, ../sass/app.scss */
 .add-row:hover {
   background-color: #4d4d4d;
+}
+
+/* line 165, ../sass/app.scss */
+.remove-row {
+  position: absolute;
+  left: -25px;
+  top: 4px;
+}
+/* line 169, ../sass/app.scss */
+.remove-row:hover {
+  cursor: pointer;
 }

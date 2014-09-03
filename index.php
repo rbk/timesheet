@@ -21,7 +21,6 @@
         <input type="submit">
     </nav>
     <br><br>
- 
     <script id="timesheet-template" type="text/template">
     <div id="{{date2}}" class="timesheet">
         <button class="add-row">Add Row</button>
@@ -74,6 +73,7 @@
         <tr data-id="{{id}}" class="time-row">
             <td data-id="{{company-id}}" class="leftside">
                 <input class="company" type="text" placeholder="" value="{{company}}">
+                <div class="remove-row"><i class="fa fa-minus remove-icon"></i></div> 
             </td>
             {{times}}
         </tr>
@@ -82,6 +82,7 @@
     <tr data-id="{{work-length}}" class="time-row">
             <td class="leftside">
                 <input class="company" type="text" placeholder="" value="">
+                <div class="remove-row"><i class="fa fa-minus remove-icon"></i></div> 
             </td>
             <td data-col="0 " class="checks"></td>
             <td data-col="1 " class="checks"></td>
@@ -135,118 +136,10 @@
     </script>
 
     <div id="output"></div>
-<!--     <br>
-    <br>
-    <br>
-
-    <div id="" class="timesheet">
-        <section id="general">
-            <h2>
-                <span class="date"><?php echo Date('l - F dS, Y' ); ?></span>
-                <span class="tracked">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Tracked: 7.5</span>
-                <span style="float:right;">
-                    Name:&nbsp;<input id="name" type="text" placeholder="your name" style="width: 200px">
-                </span>
-            </h2>
-        </section>
-        <table>
-            <tr>
-                <td class="leftside"></td>
-                <td>8</td>
-                <td>8</td>
-                <td>8</td>
-                <td>8</td>
-                <td>9</td>
-                <td>9</td>
-                <td>9</td>
-                <td>9</td>
-                <td>10</td>
-                <td>10</td>
-                <td>10</td>
-                <td>10</td>
-                <td>11</td>
-                <td>11</td>
-                <td>11</td>
-                <td>11</td>
-                <td>12</td>
-                <td>12</td>
-                <td>12</td>
-                <td>12</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>2</td>
-                <td>2</td>
-                <td>2</td>
-                <td>2</td>
-                <td>3</td>
-                <td>3</td>
-                <td>3</td>
-                <td>3</td>
-                <td>4</td>
-                <td>4</td>
-                <td>4</td>
-                <td>4</td>
-                <td>5</td>
-                <td>5</td>
-                <td>5</td>
-                <td>5</td>
-                <td>6</td>
-                <td>6</td>
-                <td>6</td>
-                <td>6</td>
-            </tr>
-            <tbody class="timesheet-body">
-                
-            </tbody> 
-        
-            <tr class="time-row">
-                <td class="leftside"><input class="company" type="text" placeholder=""></td>
-            </tr>
-        
-     
-        </table>
-    </div> end timesheet -->
  </div> <!-- end .container -->
 
 
 
 <script src="./js/app.js"></script>
-<script>
-    $(function(){
-
-        // $(document).on('click', 'td.checks', function(){
-            // if( $(this).hasClass('checked') ){
-            //     $(this).html('');
-            //     $(this).removeClass('checked');
-            // } else {
-            //     $(this).html('<i class="fa fa-check">X</i>')
-            //     $(this).addClass('checked')
-            // }
-        // });
-        // $(document).on('click', '.add-row', function(){
-        //     var row = $('#full-row-template').html();
-        //     $(this).parent().find('tbody').append(row);
-        // });
-
-        // Too distracting
-        $(document).on('mouseover', 'td.checks', function(){
-            // console.log( $(this) )
-            // var column = $(this).attr('data-col');
-            // $('td[data-col='+column+']').css({'background-color':'#333'});
-        }).on( 'mouseout', '.checks', function(){
-            // var column = $(this).attr('data-col');
-            // $('td[data-col='+column+']').attr('style', '');
-        });
-
-
-
-});
-</script>
 </body>
 </html>
