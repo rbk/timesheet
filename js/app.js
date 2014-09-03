@@ -66,65 +66,11 @@ $(function(){
                     company: '',
                     description: '',
                     totalHours: 0, // sumb of true on day multiplied by 15
-                    day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 }
             ] 
     };
     
-    var employeeTimesheets = [
-        { 
-            name: '', 
-            date: '',
-            day: '',
-            totalHours: 0,
-            work: [
-                    { 
-                        id: 0,
-                        company: '',
-                        description: '',
-                        totalHours: 0, // sumb of true on day multiplied by 15
-                        day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    }
-                ] 
-        }
-        // ,
-        // { 
-        //     name: 'Richard', 
-        //     date: "8-29-2014",
-        //     totalHours: 8,
-        //     work: [
-        //             { 
-        //                 id: '1',
-        //                 company: 'Email/Server Issue',
-        //                 description: '',
-        //                 totalHours: 10, // sumb of true on day multiplied by 15
-        //                 day : [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        //             },
-        //             { 
-        //                 id: '2',
-        //                 company: 'Drysdales',
-        //                 description: '',
-        //                 totalHours: 10, // sumb of true on day multiplied by 15
-        //                 day : [0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        //             },
-        //             { 
-        //                 id: '3',
-        //                 company: 'Gurustu',
-        //                 description: '',
-        //                 totalHours: 10, // sumb of true on day multiplied by 15
-        //                 day : [0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        //             },
-        //             { 
-        //                 id: '4',
-        //                 company: 'CampGrit',
-        //                 description: '',
-        //                 totalHours: 10, // sumb of true on day multiplied by 15
-        //                 day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        //             }
-        //         ] 
-        // }
-    ];
-
     // Bam... reusability
     function printTimeSheets( employeeTimesheets ){
 
@@ -196,7 +142,10 @@ $(function(){
             // }
         };
         request.onerror = function(e) {
-            console.log( 'Something went wrong whilest connection to db...' );
+            var delete_database = confirm( 'Something went wrong whilest connection to db!!! Is the database safe to delete?' );
+            if( delete_database ){
+                indexedDB.deleteDatabase('timesheets');
+            }
         };
         request.onsuccess = function(e) {
             db = e.target.result;
@@ -228,18 +177,6 @@ $(function(){
                 console.log('Saved');
             }
         }
-        // function updateTimesheet( timesheet_id ){
-        //     var timesheet = {};
-        //     var transaction = db.transaction(['timesheets'],'readwrite');
-        //     var store = transaction.objectStore('timesheets');
-        //     var request = store.get( timesheet_id );
-        //     request.onsuccess = function(e){
-        //         console.log( e.target.result )
-        //         timesheet = e.target.result;
-        //     }
-        //     return timesheet;
-        //     // return e.target.result;
-        // }
         function init(){
             var transaction = db.transaction(['settings'],'readwrite');
             var store = transaction.objectStore('settings');
@@ -314,26 +251,7 @@ $(function(){
     
     }; // if indexeddb
 
-
-    /*
-    *
-    *  Algorithm
-    *
-    */ 
-    // ----user connets.
-    // -----check for entry with todays date
-    // ----if no entry, save default sheet
-    // -----print all sheets
-
-    // on change of sheet
-    // get parent id infoformation
-    // turn data td's into array mimicing default
-    // save
-    $(document).on('click', 'td.checks', function(e){
-        e.preventDefault();
-        // saveTimeOnHoverOrClick( $(this) );
-    });
-
+    // Saving Events
     var mouse_down = false;
     $(document).on('mousedown', 'td.checks', function(e){
         e.preventDefault();
@@ -347,18 +265,6 @@ $(function(){
             $(this).removeClass('first');
         });
     });
-
-    // var shift_down = false;
-    // $(document).on( 'keydown', function(e){
-    //     if( e.keyCode == 16 ){
-    //         shift_down = true;
-    //     }
-    // }).on( 'keyup', function(e){
-    //     if( e.keyCode == 16 ){
-    //         shift_down = false;
-    //     }
-    // });
-
     $(document).on('mouseover', 'td.checks', function(e){
         e.preventDefault();
         if( mouse_down && !$(this).hasClass('changed') && !$(this).hasClass('first') ){
@@ -415,7 +321,7 @@ function saveTimeOnHoverOrClick( arg ){
         };
 
 }
-
+    // Saving company
     $(document).on( 'keyup', 'input.company', function(){
 
         var company_or_note = $(this).val();
@@ -451,16 +357,23 @@ function saveTimeOnHoverOrClick( arg ){
                 company: '',
                 description: '',
                 totalHours: 0,
-                day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             };
 
             timesheet.work.push( rowObject )            
             store.put( timesheet );        
             
-            location.reload();
-            // var row = $('#full-row-template').html();
-            // row = row.replace('{{work-length}}', work_length );
-            // $('#'+timesheet_id+ ' tbody').append(row);
+            // location.reload();
+            // var row = $('#'+timesheet_id + ' .time-row:first');
+            // row.replace('data-id="0"', 'data-id="'+ work_length +'"');
+            // var time_row_id = $('.time-row td').attr('data-id')
+            var row = $('#full-row-template').html();
+            row = row.replace('{{work-length}}', work_length );
+            // console.log(  );
+            // $(row + ' td:first').attr('data-id', timesheet_id );
+            // $(row).find('td.checks').attr('data-index', timesheet_id );
+            // console.log( $(row + ' td:first') )
+            $('#'+timesheet_id+ ' tbody').append(row);
 
         };
 

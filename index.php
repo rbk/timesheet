@@ -34,8 +34,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Tracked Time: 
-                    <span class="tracked">
-                    {{totalHours}}</span>
+                    <span class="tracked">{{totalHours}}</span>
                 </span>
                 <span style="float:right;">
                     Name:&nbsp;<input id="name" type="text" placeholder="your name" style="width: 200px" value="{{name}}">
@@ -46,6 +45,7 @@
         <thead>
             <tr>
                 <th class="leftside"></th>
+                <th>7</th><th>7</th><th>7</th><th>7</th>
                 <th>8</th><th>8</th><th>8</th><th>8</th>
                 <th>9</th><th>9</th><th>9</th><th>9</th>
                 <th>10</th><th>10</th><th>10</th><th>10</th>
@@ -83,7 +83,54 @@
             <td class="leftside">
                 <input class="company" type="text" placeholder="" value="">
             </td>
-            <td data-col="0" class="checks" style=""></td><td data-col="1" class="checks" style=""></td><td data-col="2" class="checks"></td><td data-col="3" class="checks" style=""></td><td data-col="4" class="checks"></td><td data-col="5" class="checks"></td><td data-col="6" class="checks" style=""></td><td data-col="7" class="checks" style=""></td><td data-col="8" class="checks" style=""></td><td data-col="9" class="checks" style=""></td><td data-col="10" class="checks" style=""></td><td data-col="11" class="checks" style=""></td><td data-col="12" class="checks"></td><td data-col="13" class="checks" style=""></td><td data-col="14" class="checks" style=""></td><td data-col="15" class="checks" style=""></td><td data-col="16" class="checks" style=""></td><td data-col="17" class="checks" style=""></td><td data-col="18" class="checks"></td><td data-col="19" class="checks"></td><td data-col="20" class="checks"></td><td data-col="21" class="checks"></td><td data-col="22" class="checks"></td><td data-col="23" class="checks"></td><td data-col="24" class="checks"></td><td data-col="25" class="checks"></td><td data-col="26" class="checks"></td><td data-col="27" class="checks"></td><td data-col="28" class="checks"></td><td data-col="29" class="checks"></td><td data-col="30" class="checks"></td><td data-col="31" class="checks"></td><td data-col="32" class="checks"></td><td data-col="33" class="checks"></td><td data-col="34" class="checks"></td><td data-col="35" class="checks"></td><td data-col="36" class="checks"></td><td data-col="37" class="checks"></td><td data-col="38" class="checks"></td><td data-col="39" class="checks"></td><td data-col="40" class="checks"></td><td data-col="41" class="checks"></td><td data-col="42" class="checks"></td><td data-col="43" class="checks"></td>
+            <td data-col="0 " class="checks"></td>
+            <td data-col="1 " class="checks"></td>
+            <td data-col="2 " class="checks"></td>
+            <td data-col="3 " class="checks"></td>
+            <td data-col="4 " class="checks"></td>
+            <td data-col="5 " class="checks"></td>
+            <td data-col="6 " class="checks"></td>
+            <td data-col="7 " class="checks"></td>
+            <td data-col="8 " class="checks"></td>
+            <td data-col="9 " class="checks"></td>
+            <td data-col="10" class="checks"></td>
+            <td data-col="11" class="checks"></td>
+            <td data-col="12" class="checks"></td>
+            <td data-col="13" class="checks"></td>
+            <td data-col="14" class="checks"></td>
+            <td data-col="15" class="checks"></td>
+            <td data-col="16" class="checks"></td>
+            <td data-col="17" class="checks"></td>
+            <td data-col="18" class="checks"></td>
+            <td data-col="19" class="checks"></td>
+            <td data-col="20" class="checks"></td>
+            <td data-col="21" class="checks"></td>
+            <td data-col="22" class="checks"></td>
+            <td data-col="23" class="checks"></td>
+            <td data-col="24" class="checks"></td>
+            <td data-col="25" class="checks"></td>
+            <td data-col="26" class="checks"></td>
+            <td data-col="27" class="checks"></td>
+            <td data-col="28" class="checks"></td>
+            <td data-col="29" class="checks"></td>
+            <td data-col="30" class="checks"></td>
+            <td data-col="31" class="checks"></td>
+            <td data-col="32" class="checks"></td>
+            <td data-col="33" class="checks"></td>
+            <td data-col="34" class="checks"></td>
+            <td data-col="35" class="checks"></td>
+            <td data-col="36" class="checks"></td>
+            <td data-col="37" class="checks"></td>
+            <td data-col="38" class="checks"></td>
+            <td data-col="39" class="checks"></td>
+            <td data-col="40" class="checks"></td>
+            <td data-col="41" class="checks"></td>
+            <td data-col="42" class="checks"></td>
+            <td data-col="43" class="checks"></td>
+            <td data-col="44" class="checks"></td>
+            <td data-col="45" class="checks"></td>
+            <td data-col="46" class="checks"></td>
+            <td data-col="47" class="checks"></td>
         </tr>
     </script>
 
