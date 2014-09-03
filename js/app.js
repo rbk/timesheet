@@ -301,7 +301,7 @@ function saveTimeOnHoverOrClick( arg ){
                 tds.push(0);
             }
         });
-        
+
         var timesheet;
         var transaction = db.transaction(['timesheets'],'readwrite');
         var store = transaction.objectStore('timesheets');
@@ -363,14 +363,48 @@ function saveTimeOnHoverOrClick( arg ){
     });
     $(document).on( 'click', '.remove-row', function(){
         // remove-icon
+        
+        var timesheet_id = $(this).parent().parent().parent().parent().parent().attr('id');
+        var work_length;
+        var transaction = db.transaction(['timesheets'],'readwrite');
+        var store = transaction.objectStore('timesheets');
+        var request = store.get( timesheet_id );
+
+        $(this).parent().parent().remove();
         var row_id = $(this).parent().parent().attr('data-id');
+        
         console.log( row_id );
+
+        request.onsuccess = function(e){
+            timesheet = e.target.result;
+            timesheet.work.splice(row_id,1);
+            for( var i=0;i<timesheet.work.length; i++ ){
+                timesheet.work[i].id = i;
+            }
+            var i = 0;
+            $('#'+timesheet_id+ ' tbody tr').each(function(){
+                $(this).attr('data-id', i);
+                i++;
+            });
+            store.put( timesheet );
+        };
+
+
+
     });
 
 
 
 
-
+      // Too distracting
+        // $(document).on('mouseover', 'td.checks', function(){
+            // console.log( $(this) )
+            // var column = $(this).attr('data-col');
+            // $('td[data-col='+column+']').css({'background-color':'#333'});
+        // }).on( 'mouseout', '.checks', function(){
+            // var column = $(this).attr('data-col');
+            // $('td[data-col='+column+']').attr('style', '');
+        // });
 
 
 });

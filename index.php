@@ -135,11 +135,10 @@
         </tr>
     </script>
 
-    <div id="output"></div>
- </div> <!-- end .container -->
-
-
-
-<script src="./js/app.js"></script>
+        <div id="output"></div>
+    
+    </div> <!-- end .container -->
+    
+    <script src="./js/app.js"></script>
 </body>
 </html>
