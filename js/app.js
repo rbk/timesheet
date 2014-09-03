@@ -291,7 +291,7 @@ function saveTimeOnHoverOrClick( arg ){
         }
 
         var td = arg.parent().find('td.checks');
-        var timesheet_id = arg.attr('data-index');
+        var timesheet_id = arg.parent().parent().parent().parent().attr('id');
         var tds = [];
 
         // console.log( td.length )
