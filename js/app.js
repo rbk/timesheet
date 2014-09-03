@@ -1,18 +1,16 @@
 $(function(){
 
     // Reload page every 12 hours?
-    // var siad = 60*60*24/2;
-    // console.log( siad )
-    // localStorage.setItem('timesheet_reload_time', 0);
-    // var counter = localStorage.getItem('timesheet_reload_time');
-    // t = setInterval(function(){
-    //     counter = parseInt(counter + 10);
-    //     localStorage.setItem('timesheet_reload_time', counter);
-    //     if( counter == siad ){
-    //         localStorage.setItem('timesheet_reload_time', 0)
-    //         location.reload();
-    //     }
-    // }, 100);
+    var siad = 60*60*24/2;
+    var counter = localStorage.getItem('timesheet_reload_time');
+    t = setInterval(function(){
+        counter = parseInt(counter + 1);
+        localStorage.setItem('timesheet_reload_time', counter);
+        if( counter == siad ){
+            localStorage.setItem('timesheet_reload_time', 0)
+            location.reload();
+        }
+    }, 1000);
     
     var idbSupported = false;
 
