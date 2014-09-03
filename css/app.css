@@ -4069,8 +4069,17 @@ body.dark ::-moz-placeholder {
 body.dark :-ms-input-placeholder {
   color: #444444;
 }
+/* line 38, ../sass/app.scss */
+body.dark th {
+  background-color: #333;
+}
+/* line 42, ../sass/app.scss */
+body.dark td:nth-child(4n+1),
+body.dark th:nth-child(4n+1) {
+  border-right: 1px solid #C3C3C3;
+}
 
-/* line 39, ../sass/app.scss */
+/* line 46, ../sass/app.scss */
 #general h2 {
   border: 1px solid #616161;
   margin: 0;
@@ -4078,28 +4087,28 @@ body.dark :-ms-input-placeholder {
   border-bottom: 0;
 }
 
-/* line 45, ../sass/app.scss */
+/* line 52, ../sass/app.scss */
 .container {
   padding: 1em;
   width: 90%;
   margin: 0 auto;
 }
 
-/* line 50, ../sass/app.scss */
+/* line 57, ../sass/app.scss */
 .timesheet {
   position: relative;
   margin: 0 auto;
   width: 100%;
 }
 
-/* line 55, ../sass/app.scss */
+/* line 62, ../sass/app.scss */
 table {
   border: 1px solid #fff;
   table-layout: fixed;
   width: 100%;
 }
 
-/* line 60, ../sass/app.scss */
+/* line 67, ../sass/app.scss */
 td, th {
   text-align: center;
   border: 1px solid #666;
@@ -4109,19 +4118,19 @@ td, th {
   font-weight: normal;
 }
 
-/* line 71, ../sass/app.scss */
+/* line 78, ../sass/app.scss */
 td:hover {
   cursor: default;
 }
 
-/* line 75, ../sass/app.scss */
+/* line 82, ../sass/app.scss */
 .leftside {
   width: 200px;
   padding: 0 3px;
   margin: 0;
 }
 
-/* line 81, ../sass/app.scss */
+/* line 88, ../sass/app.scss */
 input {
   outline: 0;
   background-color: transparent;
@@ -4132,31 +4141,35 @@ input {
   height: 100%;
 }
 
-/* line 90, ../sass/app.scss */
+/* line 97, ../sass/app.scss */
 td.checked {
-  background-color: lime !important;
+  background-color: #209236 !important;
   color: #fff;
 }
-/* line 95, ../sass/app.scss */
+/* line 102, ../sass/app.scss */
+td.checked:hover {
+  background-color: lime !important;
+}
+/* line 105, ../sass/app.scss */
 td.checked:active {
   box-shadow: inset 1px 1px 2px #000;
 }
 
-/* line 100, ../sass/app.scss */
+/* line 110, ../sass/app.scss */
 td:hover:not(.checked) {
   background-color: #222;
 }
-/* line 102, ../sass/app.scss */
+/* line 112, ../sass/app.scss */
 td:hover:not(.checked):active {
   box-shadow: inset 1px 1px 2px #000;
 }
 
-/* line 114, ../sass/app.scss */
+/* line 124, ../sass/app.scss */
 .fa-check {
   text-shadow: 1px 1px 0px #000;
 }
 
-/* line 123, ../sass/app.scss */
+/* line 133, ../sass/app.scss */
 body button,
 body input[type=submit] {
   width: auto;
@@ -4167,18 +4180,18 @@ body input[type=submit] {
   padding: 6px 15px;
   color: #000;
 }
-/* line 131, ../sass/app.scss */
+/* line 141, ../sass/app.scss */
 body button:hover,
 body input[type=submit]:hover {
   background-color: #eee;
 }
-/* line 134, ../sass/app.scss */
+/* line 144, ../sass/app.scss */
 body button:active,
 body input[type=submit]:active {
   background-color: #ddd;
 }
 
-/* line 141, ../sass/app.scss */
+/* line 151, ../sass/app.scss */
 .add-row {
   position: absolute;
   left: -45px;
@@ -4191,7 +4204,7 @@ body input[type=submit]:active {
   font-size: 12px;
   line-height: 1;
 }
-/* line 152, ../sass/app.scss */
+/* line 162, ../sass/app.scss */
 .add-row:hover {
   background-color: #4d4d4d;
 }

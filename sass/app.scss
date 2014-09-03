@@ -35,6 +35,13 @@ body.dark {
     :-moz-placeholder { color: $placeholder-color-dark; }
     ::-moz-placeholder { color: $placeholder-color-dark; }
     :-ms-input-placeholder { color: $placeholder-color-dark; }
+    th {
+        background-color: #333;
+    }
+    td:nth-child(4n+1),
+    th:nth-child(4n+1){
+        border-right: 1px solid #C3C3C3;
+    }
 }
 #general h2 {
     border: 1px solid #616161;
@@ -88,10 +95,13 @@ input {
     height: 100%;
 }
 td.checked {
-    background-color: lime !important;
+    // background-color: lime !important;
     // background-color: #207F92 !important;
-    // background-color: rgb(32, 146, 54)!important;
+    background-color: rgb(32, 146, 54)!important;
     color: #fff;
+    &:hover {
+        background-color: lime !important;        
+    }
     &:active {
         box-shadow: inset 1px 1px 2px #000;
     }
