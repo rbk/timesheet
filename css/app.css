@@ -4040,46 +4040,46 @@ body.dark {
   background-color: #222;
   color: #999;
 }
-/* line 24, ../sass/app.scss */
-body.dark table, body.dark td, body.dark th {
+/* line 26, ../sass/app.scss */
+body.dark .timesheet table, body.dark .timesheet td, body.dark .timesheet th {
   border: 1px solid #666;
 }
-/* line 27, ../sass/app.scss */
-body.dark input {
+/* line 29, ../sass/app.scss */
+body.dark .timesheet input {
   color: #999;
   background-color: #222;
 }
-/* line 31, ../sass/app.scss */
-body.dark tr:hover {
+/* line 33, ../sass/app.scss */
+body.dark .timesheet tr:hover {
   background-color: #333;
 }
-/* line 34, ../sass/app.scss */
-body.dark ::-webkit-input-placeholder {
-  color: #444444;
-}
-/* line 35, ../sass/app.scss */
-body.dark :-moz-placeholder {
-  color: #444444;
-}
 /* line 36, ../sass/app.scss */
-body.dark ::-moz-placeholder {
+body.dark .timesheet ::-webkit-input-placeholder {
   color: #444444;
 }
 /* line 37, ../sass/app.scss */
-body.dark :-ms-input-placeholder {
+body.dark .timesheet :-moz-placeholder {
   color: #444444;
 }
 /* line 38, ../sass/app.scss */
-body.dark th {
+body.dark .timesheet ::-moz-placeholder {
+  color: #444444;
+}
+/* line 39, ../sass/app.scss */
+body.dark .timesheet :-ms-input-placeholder {
+  color: #444444;
+}
+/* line 40, ../sass/app.scss */
+body.dark .timesheet th {
   background-color: #333;
 }
-/* line 42, ../sass/app.scss */
-body.dark td:nth-child(4n+1),
-body.dark th:nth-child(4n+1) {
+/* line 44, ../sass/app.scss */
+body.dark .timesheet td:nth-child(4n+1),
+body.dark .timesheet th:nth-child(4n+1) {
   border-right: 1px solid #C3C3C3;
 }
 
-/* line 46, ../sass/app.scss */
+/* line 49, ../sass/app.scss */
 #general h2 {
   border: 1px solid #616161;
   margin: 0;
@@ -4087,28 +4087,28 @@ body.dark th:nth-child(4n+1) {
   border-bottom: 0;
 }
 
-/* line 52, ../sass/app.scss */
+/* line 55, ../sass/app.scss */
 .container {
   padding: 1em;
   width: 90%;
   margin: 0 auto;
 }
 
-/* line 57, ../sass/app.scss */
+/* line 60, ../sass/app.scss */
 .timesheet {
   position: relative;
   margin: 0 auto;
   width: 100%;
 }
 
-/* line 62, ../sass/app.scss */
+/* line 65, ../sass/app.scss */
 table {
   border: 1px solid #fff;
   table-layout: fixed;
   width: 100%;
 }
 
-/* line 67, ../sass/app.scss */
+/* line 70, ../sass/app.scss */
 td, th {
   text-align: center;
   border: 1px solid #666;
@@ -4132,7 +4132,7 @@ td:hover {
 }
 
 /* line 89, ../sass/app.scss */
-input {
+.timesheet input {
   outline: 0;
   background-color: transparent;
   border: 0;
@@ -4165,12 +4165,12 @@ td:hover:not(.checked):active {
   box-shadow: inset 1px 1px 2px #000;
 }
 
-/* line 125, ../sass/app.scss */
+/* line 119, ../sass/app.scss */
 .fa-check {
   text-shadow: 1px 1px 0px #000;
 }
 
-/* line 134, ../sass/app.scss */
+/* line 128, ../sass/app.scss */
 body button,
 body input[type=submit] {
   width: auto;
@@ -4181,18 +4181,40 @@ body input[type=submit] {
   padding: 6px 15px;
   color: #000;
 }
-/* line 142, ../sass/app.scss */
+/* line 136, ../sass/app.scss */
 body button:hover,
 body input[type=submit]:hover {
   background-color: #eee;
 }
-/* line 145, ../sass/app.scss */
+/* line 139, ../sass/app.scss */
 body button:active,
 body input[type=submit]:active {
   background-color: #ddd;
 }
 
+/* line 145, ../sass/app.scss */
+input[type=text] {
+  border: 0;
+  background-color: #eee;
+  padding: 3px;
+  color: #222;
+  outline: 0;
+}
+
 /* line 152, ../sass/app.scss */
+label {
+  display: inline-block;
+  width: 200px;
+  text-align: right;
+  margin-right: 20px;
+}
+
+/* line 158, ../sass/app.scss */
+.field {
+  margin-bottom: 10px;
+}
+
+/* line 162, ../sass/app.scss */
 .add-row {
   position: absolute;
   left: -45px;
@@ -4205,18 +4227,57 @@ body input[type=submit]:active {
   font-size: 12px;
   line-height: 1;
 }
-/* line 163, ../sass/app.scss */
+/* line 173, ../sass/app.scss */
 .add-row:hover {
   background-color: #4d4d4d;
 }
 
-/* line 165, ../sass/app.scss */
+/* line 175, ../sass/app.scss */
 .remove-row {
   position: absolute;
-  left: -25px;
+  left: -33px;
   top: 4px;
+  width: 33px;
+  display: none;
 }
-/* line 169, ../sass/app.scss */
+/* line 181, ../sass/app.scss */
 .remove-row:hover {
+  cursor: pointer;
+  display: block;
+}
+
+/* line 187, ../sass/app.scss */
+tr:hover .remove-row {
+  display: block;
+}
+
+/* line 191, ../sass/app.scss */
+.page {
+  display: none;
+}
+/* line 193, ../sass/app.scss */
+.page .inner-page {
+  padding: 4em 8em;
+}
+
+/* line 197, ../sass/app.scss */
+#settings {
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+  background-color: rgba(34, 34, 34, 0.9);
+  border: 1px solid #444;
+}
+
+/* line 206, ../sass/app.scss */
+.fa-times {
+  font-size: 44px;
+  float: right;
+  margin: 15px 30px;
+}
+/* line 210, ../sass/app.scss */
+.fa-times:hover {
   cursor: pointer;
 }

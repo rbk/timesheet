@@ -21,26 +21,29 @@ body {
 body.dark {
     background-color: #222;
     color: #999;
-    table,td,th {
-        border: 1px solid #666;
-    }
-    input {
-        color: #999;
-        background-color: #222;
-    }
-    tr:hover {
-        background-color: #333;
-    }
-    ::-webkit-input-placeholder { color: $placeholder-color-dark; }
-    :-moz-placeholder { color: $placeholder-color-dark; }
-    ::-moz-placeholder { color: $placeholder-color-dark; }
-    :-ms-input-placeholder { color: $placeholder-color-dark; }
-    th {
-        background-color: #333;
-    }
-    td:nth-child(4n+1),
-    th:nth-child(4n+1){
-        border-right: 1px solid #C3C3C3;
+    
+    .timesheet {
+        table,td,th {
+            border: 1px solid #666;
+        }
+        input {
+            color: #999;
+            background-color: #222;
+        }
+        tr:hover {
+            background-color: #333;
+        }
+        ::-webkit-input-placeholder { color: $placeholder-color-dark; }
+        :-moz-placeholder { color: $placeholder-color-dark; }
+        ::-moz-placeholder { color: $placeholder-color-dark; }
+        :-ms-input-placeholder { color: $placeholder-color-dark; }
+        th {
+            background-color: #333;
+        }
+        td:nth-child(4n+1),
+        th:nth-child(4n+1){
+            border-right: 1px solid #C3C3C3;
+        }
     }
 }
 #general h2 {
@@ -72,9 +75,6 @@ td,th {
     transition: background .2s ease-in-out;
     font-weight: normal;
 }
-tr:hover {
-    // background-color: #eee;
-}
 td:hover {
     cursor: default;
     // background-color: #eee !important;
@@ -86,7 +86,7 @@ td:hover {
     margin: 0;
 }
 
-input {
+.timesheet input {
     outline: 0;
     background-color: transparent;
     border: 0;
@@ -115,13 +115,7 @@ td {
         }
     }
 }
-// .col-1:hover {
-//     background-color: red;
-// }
 
-// tr th:nth-child(*):hover {
-//     background-color: red;
-// }
 .fa-check {
     text-shadow: 1px 1px 0px #000;
 }
@@ -130,23 +124,39 @@ td {
 
 body {
 
-button,
-input[type=submit] {
-    width: auto;
-    border: 0;
-    margin: 0;
-    outline: 0;
-    background-color: #FFF;
-    padding: 6px 15px;
-    color: #000;
-    &:hover {
-        background-color: #eee;
+    button,
+    input[type=submit] {
+        width: auto;
+        border: 0;
+        margin: 0;
+        outline: 0;
+        background-color: #FFF;
+        padding: 6px 15px;
+        color: #000;
+        &:hover {
+            background-color: #eee;
+        }
+        &:active {
+            background-color: #ddd;
+        }
     }
-    &:active {
-        background-color: #ddd;
-    }
-}
 
+}
+input[type=text]{
+    border: 0;
+    background-color: #eee;
+    padding: 3px;
+    color: #222;
+    outline: 0;
+}
+label {
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+    margin-right: 20px;
+}
+.field {
+    margin-bottom: 10px;
 }
 
 .add-row {
@@ -164,8 +174,39 @@ input[type=submit] {
 }
 .remove-row {
     position: absolute;
-    left: -25px;
+    left: -33px;
     top: 4px;
+    width: 33px;
+    display:none;
+    &:hover {
+        cursor: pointer;
+        display:block;
+    }
+}
+tr:hover {
+    .remove-row {
+        display: block;
+    }
+}
+.page {
+    display: none;
+    .inner-page {
+        padding: 4em 8em;
+    }
+}
+#settings {
+    position: absolute;
+    top:10%;
+    bottom:10%;
+    left:10%;
+    right:10%;
+    background-color: rgba(34, 34, 34, .9);
+    border: 1px solid #444;
+}
+.fa-times {
+    font-size: 44px;
+    float: right;
+    margin: 15px 30px;
     &:hover {
         cursor: pointer;
     }

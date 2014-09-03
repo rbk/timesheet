@@ -392,6 +392,13 @@ function saveTimeOnHoverOrClick( arg ){
 
 
     });
+    $(document).on('click', '.close', function(){
+        $(this).parent().fadeOut();
+    });
+    $('.nav-item').on('click', function(){
+        var popup_id = $(this).attr('data-id');
+        $('#'+popup_id).fadeIn();
+    });
 
 
 

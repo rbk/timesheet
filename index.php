@@ -16,10 +16,11 @@
 </head>
 <body class="dark">
 <div class="container">
+    
     <nav style="display:none;">
-        <button>Toggle Theme</button>
-        <input type="submit">
+        <button class="nav-item" data-id="settings">Settings</button>
     </nav>
+
     <br><br>
     <script id="timesheet-template" type="text/template">
     <div id="{{date2}}" class="timesheet">
@@ -82,7 +83,7 @@
     <tr data-id="{{work-length}}" class="time-row">
             <td class="leftside">
                 <input class="company" type="text" placeholder="" value="">
-                <div class="remove-row"><i class="fa fa-minus remove-icon"></i></div> 
+                <div class="remove-row"><i class="fa fa-trash remove-icon"></i></div> 
             </td>
             <td data-col="0 " class="checks"></td>
             <td data-col="1 " class="checks"></td>
@@ -139,6 +140,22 @@
     
     </div> <!-- end .container -->
     
+    <section id="settings" class="page">
+        <div class="close"><i class="fa fa-times"></i></div>
+        <div class="inner-page">
+            <h1>Settings</h1>
+            <div class="field">
+                <label>Name</label>
+                <input type="text" name="default-name">
+            </div>
+            <div class="field">
+                <label>Email</label>
+                <input type="text" name="default-email">
+            </div>
+        </div>
+    </section>
+
+
     <script src="./js/app.js"></script>
 </body>
 </html>
