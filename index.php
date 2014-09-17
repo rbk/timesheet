@@ -13,6 +13,7 @@
     <!-- // <script src="//code.jquery.com/jquery-1.11.1.js"></script> -->
     <script src="js/jquery.1.8.js"></script>
     <script src="js/underscores.1.7.js"></script>
+    <link rel="shortcut icon" href="images/favicon.ico">
 </head>
 <body class="dark">
 <div class="container">
