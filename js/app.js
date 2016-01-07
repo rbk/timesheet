@@ -3,7 +3,7 @@ $(function(){
     // Reload page every 12 hours?
     var siad = 60*60*24/2;
     var counter = localStorage.getItem('timesheet_reload_time');
-    t = setInterval(function(){
+    var t = setInterval(function(){
         counter = parseInt(counter + 1);
         localStorage.setItem('timesheet_reload_time', counter);
         if( counter == siad ){
@@ -404,14 +404,14 @@ function saveTimeOnHoverOrClick( arg ){
 
 
       // Too distracting
-        // $(document).on('mouseover', 'td.checks', function(){
-            // console.log( $(this) )
-            // var column = $(this).attr('data-col');
-            // $('td[data-col='+column+']').css({'background-color':'#333'});
-        // }).on( 'mouseout', '.checks', function(){
-            // var column = $(this).attr('data-col');
-            // $('td[data-col='+column+']').attr('style', '');
-        // });
+        $(document).on('mouseover', 'td.checks', function(){
+            console.log( $(this) )
+            var column = $(this).attr('data-col');
+            $('td[data-col='+column+']').css({'background-color':'#333'});
+        }).on( 'mouseout', '.checks', function(){
+            var column = $(this).attr('data-col');
+            $('td[data-col='+column+']').attr('style', '');
+        });
 
 
 });
