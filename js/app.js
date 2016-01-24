@@ -166,6 +166,10 @@ $(function(){
                     // console.log( timesheets );
                 }
                 printTimeSheets( timesheets );
+
+                show_row_total();
+    
+
             });
         };
 
@@ -184,6 +188,7 @@ $(function(){
             request.onsuccess = function(e){
                 console.log('Saved');
                 console.log(e);
+
             }
         }
         function getSettings(db){
@@ -197,7 +202,7 @@ $(function(){
             request.onsuccess = function(event) {
                 var setting = request.result;
                 console.log( '---Settings---' );
-                console.log( request.result );
+                // console.log( request.result );
                 // $('body').addClass( setting.theme );
             };
 
@@ -213,7 +218,7 @@ $(function(){
             request.onsuccess = function(event) {
                 var timesheets = request.result;
                 console.log( '---Timesheets---' );
-                console.log( timesheets );
+                // console.log( timesheets );
             };
         }
         function checkForTodaysTimesheet(db){
@@ -313,9 +318,29 @@ function saveTimeOnHoverOrClick( arg ){
             $('#'+timesheet_id).find('.tracked').text( total*15/60 );
             timesheet.name = $('#name').val();
             timesheet.work[work_id].day = tds;
-            store.put( timesheet );        
+            store.put( timesheet ); 
         };
+        show_row_total();
 
+}
+
+function show_row_total( ){
+      var row_count = 1;
+    $(document).find('tr.time-row').each(function(){
+        var row = $(this);
+        var tds = row.find('td');
+        var row_total = 0;
+        tds.each(function(){
+            if( $(this).hasClass('checked') ){
+                row_total = row_total + .25;
+            }
+        });
+        $(this).find('.leftside .row-total').text(row_total)
+        // if( $(this).find('.leftside .row-total') ){
+        // } else {
+        //     $(this).find('.leftside').append('<div class="row-total">'+row_total+'</div>');
+        // }
+    });
 }
     // Saving company
     $(document).on( 'keyup', 'input.company', function(){
@@ -361,8 +386,14 @@ function saveTimeOnHoverOrClick( arg ){
 
 
     });
-    $(document).on( 'click', '.remove-row', function(){
+    $(document).on( 'click', '.remove-row', function(e){
         // remove-icon
+        e.preventDefault();
+
+        var conf = confirm('Really delete this row?');
+        if( !conf ){
+            return;
+        }
         
         var timesheet_id = $(this).parent().parent().parent().parent().parent().attr('id');
         var work_length;
@@ -373,7 +404,7 @@ function saveTimeOnHoverOrClick( arg ){
         $(this).parent().parent().remove();
         var row_id = $(this).parent().parent().attr('data-id');
         
-        console.log( row_id );
+        // console.log( row_id );
 
         request.onsuccess = function(e){
             timesheet = e.target.result;
@@ -392,6 +423,7 @@ function saveTimeOnHoverOrClick( arg ){
 
 
     });
+
     $(document).on('click', '.close', function(){
         $(this).parent().fadeOut();
     });
@@ -401,17 +433,15 @@ function saveTimeOnHoverOrClick( arg ){
     });
 
 
-
-
-      // Too distracting
-        // $(document).on('mouseover', 'td.checks', function(){
-            // console.log( $(this) )
-            // var column = $(this).attr('data-col');
-            // $('td[data-col='+column+']').css({'background-color':'#333'});
-        // }).on( 'mouseout', '.checks', function(){
-            // var column = $(this).attr('data-col');
-            // $('td[data-col='+column+']').attr('style', '');
-        // });
+  // Too distracting
+     $(document).on('mouseover', 'td.checks', function(){
+        // console.log( $(this) )
+        var column = $(this).attr('data-col');
+        $('td[data-col='+column+']').css({'background-color':'#333'});
+     }).on( 'mouseout', '.checks', function(){
+        var column = $(this).attr('data-col');
+         $('td[data-col='+column+']').attr('style', '');
+    });
 
 
 });

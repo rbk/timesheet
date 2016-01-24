@@ -14,10 +14,30 @@
     <script src="js/jquery.1.8.js"></script>
     <script src="js/underscores.1.7.js"></script>
     <link rel="shortcut icon" href="images/favicon.ico">
+
+    <style>
+        .leftside {
+            position: relative;
+        }
+        .leftside > div {
+            position: absolute;
+            left: -55px;
+            top: 3px;
+        }
+        .leftside > div.remove-row {
+            left: -23px;
+        }
+        #warning {
+            color: red;
+            font-size: 46px;
+        }
+        
+    </style>
+
 </head>
 <body class="dark">
 <div class="container">
-
+    <div id="warning">Do not clear browser cache or you will lose all the data</div>
     <nav style="display:none;">
         <button class="nav-item" data-id="settings">Settings</button>
     </nav>
@@ -75,7 +95,8 @@
         <tr data-id="{{id}}" class="time-row">
             <td data-id="{{company-id}}" class="leftside">
                 <input class="company" type="text" placeholder="" value="{{company}}">
-                <div class="remove-row"><i class="fa fa-minus remove-icon"></i></div> 
+                <div class="remove-row"><i class="fa fa-minus remove-icon"></i></div>
+                <div class="row-total"></div>
             </td>
             {{times}}
         </tr>
@@ -84,7 +105,8 @@
     <tr data-id="{{work-length}}" class="time-row">
             <td class="leftside">
                 <input class="company" type="text" placeholder="" value="">
-                <div class="remove-row"><i class="fa fa-minus remove-icon"></i></div> 
+                <div class="remove-row"><i class="fa fa-minus remove-icon"></i></div>
+                <div class="row-total"></div>
             </td>
             <td data-col="0 " class="checks"></td>
             <td data-col="1 " class="checks"></td>
