@@ -10,7 +10,6 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="./css/app.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- // <script src="//code.jquery.com/jquery-1.11.1.js"></script> -->
     <script src="js/jquery.1.8.js"></script>
     <script src="js/underscores.1.7.js"></script>
     <link rel="shortcut icon" href="images/favicon.ico">
