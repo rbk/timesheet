@@ -76,7 +76,11 @@ $(function(){
 
         employeeTimesheets = employeeTimesheets.reverse();
 
+        console.log( employeeTimesheets );
+
         for( var sheets=0;sheets<employeeTimesheets.length;sheets++ ){
+
+
             var id = employeeTimesheets[sheets].date;
             var template = $('#timesheet-template').html();
             var timesheet_body = '';
@@ -107,7 +111,12 @@ $(function(){
                 timesheet_body = timesheet_body.replace('{{times}}', rows)
             }
             template = template.replace('{{timesheet-body}}', timesheet_body);
-            $('#output').append(template)
+            
+            if( employeeTimesheets[sheets].totalHours == 0 && dateFull != employeeTimesheets[sheets].date ){
+                // Dont show empty days that are not today.
+            } else {
+                $('#output').append(template)
+            }
         }   
     }
 

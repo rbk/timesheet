@@ -36,8 +36,7 @@
 </head>
 <body class="dark">
 <div class="container">
-    <div id="warning">Do not clear browser cache or you will lose all the data</div>
-    <nav style="display:none;">
+    <nav>
         <button class="nav-item" data-id="settings">Settings</button>
     </nav>
 
