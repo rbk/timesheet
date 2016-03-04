@@ -16,3 +16,7 @@ This app uses indexedDB to store all data.
 - Lunch/Break Row
 - Use color picker for any row
 - Individual time block comments
+- 
+
+- collapseable day
+
