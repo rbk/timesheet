@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>GuRuStu Timesheet</title>
+    <title>MyTimesheet</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,7 +30,20 @@
             color: red;
             font-size: 46px;
         }
+        body {
+        }
         
+        .timesheet {
+            /*display: none;*/
+            margin-bottom: 50px;
+        }
+        .current-date {
+            display: block;
+        }
+        nav {
+            display: none;
+        }
+
     </style>
 
 </head>
@@ -42,7 +55,7 @@
 
     <br><br>
     <script id="timesheet-template" type="text/template">
-    <div id="{{date2}}" class="timesheet">
+    <div id="{{date2}}" class="timesheet {{curr}}">
         <button class="add-row">Add Row</button>
         <section id="general">
             <h2>
@@ -55,7 +68,7 @@
                     Tracked Time: 
                     <span class="tracked">{{totalHours}}</span>
                 </span>
-                <span style="float:right;">
+                <span style="float:right;display:none;">
                     Name:&nbsp;<input id="name" type="text" placeholder="your name" style="width: 200px" value="{{name}}">
                 </span>
             </h2>
@@ -85,9 +98,6 @@
         <br>
         
     </div>
-    <br>
-    <br>
-    <br>
     </script>
     <script type="text/template" id="row-template">
         <tr data-id="{{id}}" class="time-row">

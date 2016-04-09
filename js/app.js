@@ -1,16 +1,16 @@
 $(function(){
 
     // Reload page every 12 hours?
-    var siad = 60*60*24/2;
-    var counter = localStorage.getItem('timesheet_reload_time');
-    var t = setInterval(function(){
-        counter = parseInt(counter + 1);
-        localStorage.setItem('timesheet_reload_time', counter);
-        if( counter == siad ){
-            localStorage.setItem('timesheet_reload_time', 0)
-            location.reload();
-        }
-    }, 1000);
+    // var siad = 60*60*24/2;
+    // var counter = localStorage.getItem('timesheet_reload_time');
+    // var t = setInterval(function(){
+    //     counter = parseInt(counter + 1);
+    //     localStorage.setItem('timesheet_reload_time', counter);
+    //     if( counter == siad ){
+    //         localStorage.setItem('timesheet_reload_time', 0)
+    //         location.reload();
+    //     }
+    // }, 1000);
     
     var idbSupported = false;
 
@@ -74,9 +74,17 @@ $(function(){
     // Bam... reusability
     function printTimeSheets( employeeTimesheets ){
 
-        employeeTimesheets = employeeTimesheets.reverse();
+        console.log( employeeTimesheets )
 
-        console.log( employeeTimesheets );
+        for( var sheets=0;sheets<employeeTimesheets.length;sheets++ ){
+
+            console.log( Date.parse( employeeTimesheets[sheets].date ) );
+
+            employeeTimesheets[sheets].sortby = new Date( employeeTimesheets[sheets].date );
+
+        }
+        employeeTimesheets = employeeTimesheets.sort();
+        employeeTimesheets = employeeTimesheets.reverse();
 
         for( var sheets=0;sheets<employeeTimesheets.length;sheets++ ){
 
@@ -87,6 +95,14 @@ $(function(){
             template = template.replace('{{day}}',employeeTimesheets[sheets].day);
             template = template.replace('{{date}}',employeeTimesheets[sheets].date);
             template = template.replace('{{date2}}',employeeTimesheets[sheets].date);
+
+            var todays_new = new Date();
+            var todays_date = parseInt(todays_new.getMonth()+1) + '-' + todays_new.getDate() + '-' + todays_new.getFullYear();
+
+            if( employeeTimesheets[sheets].date == todays_date ){
+                template = template.replace('{{curr}}', 'current-date');
+            }
+
             template = template.replace('{{totalHours}}',employeeTimesheets[sheets].totalHours);
             template = template.replace('{{name}}',employeeTimesheets[sheets].name);
 
