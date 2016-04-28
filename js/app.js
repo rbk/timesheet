@@ -1,19 +1,6 @@
 $(function(){
 
-    // Reload page every 12 hours?
-    // var siad = 60*60*24/2;
-    // var counter = localStorage.getItem('timesheet_reload_time');
-    // var t = setInterval(function(){
-    //     counter = parseInt(counter + 1);
-    //     localStorage.setItem('timesheet_reload_time', counter);
-    //     if( counter == siad ){
-    //         localStorage.setItem('timesheet_reload_time', 0)
-    //         location.reload();
-    //     }
-    // }, 1000);
-    
     var idbSupported = false;
-
 	window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 	window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
 	window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
@@ -25,6 +12,15 @@ $(function(){
     } else {
         var idbSupported = true;
     }
+
+    if( !idbSupported ) {
+        document.write('This application requires indexedDB to run.');
+        return;
+    }
+
+    var db_time = moment()._d;
+
+    console.log(db_time)
 
     // var random = Math.floor(Math.random()*100); console.log( 'Lucky Number: ' + random );
     var date = new Date();
@@ -65,7 +61,7 @@ $(function(){
                     id: 0,
                     company: '',
                     description: '',
-                    totalHours: 0, // sumb of true on day multiplied by 15
+                    totalHours: 0, // sum of true on day multiplied by 15
                     day : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 }
             ] 
@@ -74,11 +70,9 @@ $(function(){
     // Bam... reusability
     function printTimeSheets( employeeTimesheets ){
 
-        console.log( employeeTimesheets )
-
         for( var sheets=0;sheets<employeeTimesheets.length;sheets++ ){
 
-            console.log( Date.parse( employeeTimesheets[sheets].date ) );
+            // console.log( Date.parse( employeeTimesheets[sheets].date ) );
 
             employeeTimesheets[sheets].sortby = new Date( employeeTimesheets[sheets].date );
 
@@ -167,10 +161,7 @@ $(function(){
             // }
         };
         request.onerror = function(e) {
-            var delete_database = confirm( 'Something went wrong whilest connection to db!!! Is the database safe to delete?' );
-            if( delete_database ){
-                indexedDB.deleteDatabase('timesheets');
-            }
+            alert('db error')
         };
         request.onsuccess = function(e) {
             db = e.target.result;
@@ -278,7 +269,23 @@ $(function(){
                 }
             };
         }
-    
+
+        function deleteTimesheetDb( ){
+            var delete_database = confirm( 'Are you sure you want to clear the database?' );
+            if( delete_database ){
+                indexedDB.deleteDatabase( db_name );
+                window.location.reload();
+            }
+        }
+        var killdb = document.querySelector('.kill-db');
+        if( killdb ) {        
+            killdb.addEventListener('click', function(e){
+                e.preventDefault();
+                deleteTimesheetDb();
+            });
+        }
+
+
     }; // if indexeddb
 
     // Saving Events

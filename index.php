@@ -41,7 +41,7 @@
             display: block;
         }
         nav {
-            display: none;
+            /*display: none;*/
         }
 
     </style>
@@ -174,7 +174,11 @@
     <section id="settings" class="page">
         <div class="close"><i class="fa fa-times"></i></div>
         <div class="inner-page">
-            <h1>Settings</h1>
+
+            <a href="#" class="kill-db">Kill db</a>        
+        
+
+            <!-- <h1>Settings</h1>
             <div class="field">
                 <label>Name</label>
                 <input type="text" name="default-name">
@@ -182,11 +186,11 @@
             <div class="field">
                 <label>Email</label>
                 <input type="text" name="default-email">
-            </div>
+            </div> -->
         </div>
     </section>
 
-
+    <script src="./bower_components/moment/moment.js"></script>
     <script src="./js/app.js"></script>
 </body>
 </html>
